@@ -1,9 +1,9 @@
 import React from 'react';
-import BusinessSummary from '../BusinessSummary/BusinessSummary';
 import Footer from '../Shared/Footer';
 import Banner from './Banner';
 import Parts from './Parts';
 import Reviews from './Reviews';
+import BusinessSummary from './BusinessSummary';
 
 const Home = () => {
     return (

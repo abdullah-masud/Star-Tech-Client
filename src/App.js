@@ -7,6 +7,8 @@ import Navbar from './Pages/Shared/Navbar';
 import NotFound from './Pages/Shared/NotFound';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Login from './Pages/Login/Login';
+import SignUp from './Pages/Login/SignUp';
 
 function App() {
 
@@ -21,6 +23,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='home' element={<Home />} />
         <Route path='blogs' element={<Blogs />} />
+        <Route path='login' element={<Login />} />
+        <Route path='signup' element={<SignUp />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>

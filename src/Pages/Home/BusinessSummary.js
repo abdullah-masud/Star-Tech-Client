@@ -7,29 +7,29 @@ const BusinessSummary = () => {
     return (
         <div className='lg:my-28 my-20 flex justify-center flex-col max-w-7xl mx-auto' data-aos="fade-left" data-aos-duration='800' data-aos-delay='200'>
             {/* <h2 className='text-center lg:text-5xl text-2xl lg:mb-20 mt-14 uppercase'>Customers Summary</h2> */}
-            <div class="stats w-full  text-center stats-vertical lg:stats-horizontal shadow">
-                <div class="stat">
-                    <div class="lg:w-32 w-24 mx-auto">
+            <div className="stats w-full  text-center stats-vertical lg:stats-horizontal shadow">
+                <div className="stat">
+                    <div className="lg:w-32 w-24 mx-auto">
                         <img src={sold} alt="" />
                     </div>
-                    <div class="stat-value">100k+</div>
-                    <div class="">Products Sold</div>
+                    <div className="stat-value">100k+</div>
+                    <div className="">Products Sold</div>
                 </div>
 
-                <div class="stat">
-                    <div class="lg:w-32 w-24 mx-auto">
+                <div className="stat">
+                    <div className="lg:w-32 w-24 mx-auto">
                         <img src={users} alt="" />
                     </div>
-                    <div class="stat-value">100+</div>
-                    <div class="">Customers Daily</div>
+                    <div className="stat-value">100+</div>
+                    <div className="">Customers Daily</div>
                 </div>
 
-                <div class="stat">
-                    <div class="lg:w-32 w-24 mx-auto">
+                <div className="stat">
+                    <div className="lg:w-32 w-24 mx-auto">
                         <img src={feedback} alt="" />
                     </div>
-                    <div class="stat-value">500+</div>
-                    <div class="">Feedbacks</div>
+                    <div className="stat-value">500+</div>
+                    <div className="">Feedbacks</div>
                 </div>
             </div>
         </div>
