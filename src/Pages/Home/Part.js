@@ -3,7 +3,7 @@ import React from 'react';
 const Part = ({ part }) => {
     const { name, image, description, minOrder, maxOrder, price } = part
     return (
-        <div class="card lg:max-w-lg bg-base-100 shadow-xl">
+        <div class="card lg:max-w-lg bg-base-100 shadow-xl" >
             <figure class="px-5 pt-5">
                 <img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" class="rounded-xl" />
             </figure>
