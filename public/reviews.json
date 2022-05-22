@@ -3,18 +3,21 @@
         "id": 1,
         "name": "Jonas",
         "description": "Excellent private tour. Our guide was incredibly knowledgable and gave us a fantastic day.",
+        "image": "https://randomuser.me/api/portraits/men/62.jpg",
         "rating": "4.5/5"
     },
     {
         "id": 2,
         "name": "Nethan",
         "description": "Our guide was very knowledgeable and friendly and we had a great time eating our way around",
+        "image": "https://randomuser.me/api/portraits/men/76.jpg",
         "rating": "5/5"
     },
     {
         "id": 3,
         "name": "Drake",
         "description": "A fantastic tour. We had a fantastic tour guide who was very knowledgeable",
+        "image": "https://randomuser.me/api/portraits/men/43.jpg",
         "rating": "4.9/5"
     }
 ]

@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Part = ({ part }) => {
-    const { name, image, description, minOrder, maxOrder, price, id } = part
-
+    const { name, image, description, minOrder, maxOrder, price, _id } = part
     const navigate = useNavigate();
     const navigateToPurchase = () => {
-        navigate(`/purchase/${id}`)
+        navigate(`/purchase/${_id}`)
     }
 
     return (
@@ -21,7 +20,7 @@ const Part = ({ part }) => {
                 <p>Min Order: {minOrder}</p>
                 <p>Max Order: {maxOrder}</p>
                 <div className="card-actions">
-                    <button onClick={() => navigateToPurchase(id)} className="btn btn-primary text-white">Buy Now</button>
+                    <button onClick={() => navigateToPurchase(_id)} className="btn btn-primary text-white">Buy Now</button>
                 </div>
             </div>
         </div>

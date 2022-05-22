@@ -1,12 +1,12 @@
 import React from 'react';
 
 const Review = ({ review }) => {
-    const { name, description, rating } = review
+    const { name, description, rating, image } = review
     return (
         <div className="card lg:max-w-lg bg-base-100 shadow-xl border">
             <div className="avatar flex justify-center">
                 <div className="mt-6 w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src="https://api.lorem.space/image/face?hash=3112" alt='' />
+                    <img src={image} alt='' />
                 </div>
             </div>
             <div className="card-body text-center">
