@@ -14,7 +14,7 @@ const Part = ({ part }) => {
                 <p>Min Order: {minOrder}</p>
                 <p>Max Order: {maxOrder}</p>
                 <div class="card-actions">
-                    <button class="btn btn-primary">Buy Now</button>
+                    <button class="btn btn-primary text-white">Buy Now</button>
                 </div>
             </div>
         </div>

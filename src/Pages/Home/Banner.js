@@ -12,7 +12,7 @@ const Banner = () => {
                 <div class="lg:w-2/5 ">
                     <h1 class="mb-5 text-5xl font-bold">Inside PC</h1>
                     <p class="mb-5">We provide all of the most recent and improved computer components for your future computer. If you are a techie, we have just what you are searching for.</p>
-                    <button class="btn btn-primary">Get Started</button>
+                    <button class="btn btn-primary text-white">Get Started</button>
                 </div>
             </div>
         </div>
