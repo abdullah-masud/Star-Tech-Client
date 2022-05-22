@@ -9,6 +9,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/Login/SignUp';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Purchase from './Pages/Purchase/Purchase';
 
 function App() {
 
@@ -23,10 +26,12 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='home' element={<Home />} />
         <Route path='blogs' element={<Blogs />} />
+        <Route path='purchase/:partId' element={<Purchase />} />
         <Route path='login' element={<Login />} />
         <Route path='signup' element={<SignUp />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
