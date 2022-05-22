@@ -4,7 +4,7 @@ import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import Loading from '../Shared/Loading';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 
@@ -18,6 +18,9 @@ const Login = () => {
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
     let errorElement;
+    const navigate = useNavigate();
+    const location = useLocation()
+    let from = location.state?.from?.pathname || "/";
 
     if (googleLoading || emailLoading || sending) {
         return <Loading />
@@ -28,7 +31,8 @@ const Login = () => {
     }
 
     if (googleUser || emailUser) {
-        console.log(googleUser || emailUser)
+        console.log(googleUser)
+        navigate(from, { replace: true });
     }
 
     const onSubmit = data => {
@@ -114,7 +118,7 @@ const Login = () => {
                     <p className='text-center'>
                         <button onClick={resetPassword} className='btn-link  text-xs font-semibold uppercase'>Forgot Password ?</button>
                     </p>
-                    <p className='text-center  font-semibold'><small>New to Inside PC? <Link className='text-secondary' to='/signup'>Create New Account</Link></small></p>
+                    <p className='text-center  font-semibold'><small>New to Star Tech? <Link className='text-secondary' to='/signup'>Create New Account</Link></small></p>
                     <div className="divider">OR</div>
                     <button
                         onClick={() => signInWithGoogle()}

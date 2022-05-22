@@ -6,6 +6,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 const Parts = () => {
     const [parts, setParts] = useState([]);
 
+
     useEffect(() => {
         fetch('http://localhost:5000/parts')
             .then(res => res.json())
@@ -20,11 +21,12 @@ const Parts = () => {
                     parts.map(part => <Part
                         key={part._id}
                         part={part}
+
                     ></Part>)
                 }
             </div>
             <div className='flex lg:justify-end justify-center mt-3 lg:mr-6'>
-                <button className='btn btn-outline btn-primary text-white'>See More <FontAwesomeIcon className='ml-2' icon={faArrowRight} /></button>
+                <button className='btn btn-sm btn-outline btn-primary text-white'>See More <FontAwesomeIcon className='ml-2' icon={faArrowRight} /></button>
             </div>
         </div>
     );

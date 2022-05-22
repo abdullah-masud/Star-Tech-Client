@@ -33,7 +33,7 @@ const Reviews = () => {
                 }
             </div>
             <div className='flex lg:justify-end justify-center mt-3' data-aos="fade-right" data-aos-duration='800' data-aos-delay='200'>
-                <button className='btn btn-outline btn-primary text-white'>See More <FontAwesomeIcon className='ml-2' icon={faArrowRight} /></button>
+                <button className='btn btn-sm btn-outline btn-primary text-white'>See More <FontAwesomeIcon className='ml-2' icon={faArrowRight} /></button>
             </div>
         </div>
     );

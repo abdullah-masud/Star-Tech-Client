@@ -9,7 +9,9 @@ import { Link, useNavigate } from 'react-router-dom';
 const SignUp = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError,] = useCreateUserWithEmailAndPassword(auth);
+
+    const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
     let errorElement;
@@ -24,7 +26,7 @@ const SignUp = () => {
     }
 
     if (googleUser || emailUser) {
-        console.log(googleUser || emailUser)
+        navigate('/home')
     }
 
     const onSubmit = async data => {

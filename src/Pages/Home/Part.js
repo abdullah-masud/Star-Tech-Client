@@ -16,11 +16,16 @@ const Part = ({ part }) => {
             <div className="card-body items-center text-center">
                 <h2 className="card-title">{name}</h2>
                 <p>{description}</p>
-                <p className='text-2xl'>Price: ${price}</p>
-                <p>Min Order: {minOrder}</p>
-                <p>Max Order: {maxOrder}</p>
-                <div className="card-actions">
-                    <button onClick={() => navigateToPurchase(_id)} className="btn btn-primary text-white">Buy Now</button>
+                <div className='flex w-full justify-between items-center'>
+                    <div>
+                        <p className='text-xl font-semibold mb-2'>Min Order: {minOrder}</p>
+                        <p className='text-xl font-semibold'>Max Order: {maxOrder}</p>
+                    </div>
+                    <div>
+                        <p className='text-xl font-semibold mb-2'>Price: ${price}</p>
+                        <button onClick={() => navigateToPurchase(_id)} className="btn btn-primary text-white btn-sm">Purchase</button>
+                    </div>
+
                 </div>
             </div>
         </div>
