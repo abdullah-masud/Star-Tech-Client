@@ -8,9 +8,8 @@ const Purchase = () => {
     const [part, setPart] = useState({});
     const [user] = useAuthState(auth);
 
-
-
     const amountRef = useRef();
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/parts/${partId}`)
@@ -20,18 +19,20 @@ const Purchase = () => {
 
     const { name, price, minOrder, maxOrder, img } = part
     const [totalOrder, setTotalOrder] = useState('')
+    const [error, setError] = useState('')
 
-
-    const errorElement = <p>Not Available</p>
+    const errorElement = <p className='text-red-500'>Please Order within the Range</p>
 
     const handleChangeAmount = () => {
         const amount = amountRef.current.value;
         console.log(amount)
-        if (amount > minOrder && amount < maxOrder) {
+        if (amount >= minOrder && amount <= maxOrder) {
             setTotalOrder(amount)
+            setError("")
+            amountRef.current.value = ""
         }
         else {
-            console.log('error')
+            setError(errorElement)
         }
     }
 
@@ -58,6 +59,7 @@ const Purchase = () => {
 
                             </div>
                         </div>
+                        <p>{error}</p>
                     </div>
                 </div>
 
