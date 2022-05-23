@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Part = ({ part }) => {
-    const { name, img, description, minOrder, maxOrder, price, _id } = part
+    const { name, img, description, minOrder, available, price, _id } = part
     const navigate = useNavigate();
     const navigateToPurchase = () => {
         navigate(`/purchase/${_id}`)
@@ -19,7 +19,7 @@ const Part = ({ part }) => {
                 <div className='flex w-full justify-between items-center'>
                     <div>
                         <p className='text-xl font-semibold mb-2'>Min Order: {minOrder}</p>
-                        <p className='text-xl font-semibold'>Max Order: {maxOrder}</p>
+                        <p className='text-xl font-semibold'>Available: {available}</p>
                     </div>
                     <div>
                         <p className='text-xl font-semibold mb-2'>Price: ${price}</p>

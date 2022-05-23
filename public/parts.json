@@ -4,7 +4,7 @@
         "name": "1 day Tour",
         "price": "200",
         "minOrder": "20",
-        "maxOrder": "200",
+        "available": "200",
         "description": "Over the course of this 24-hour period, we'll take you to all of the city's top sights and ensure that you have a great time.",
         "img": "https://i.ibb.co/qyRGbp6/1.png"
     },
@@ -13,7 +13,7 @@
         "name": "3 days Tour",
         "price": "500",
         "minOrder": "2",
-        "maxOrder": "20",
+        "available": "20",
         "description": "We will take care of your three-day tour, including food and refreshments, as well as showing you the country's most beautiful sights.",
         "img": "https://i.ibb.co/0jVWKjk/service1.jpg"
     },
@@ -22,7 +22,7 @@
         "name": "7 days Tour",
         "price": "150",
         "minOrder": "10",
-        "maxOrder": "90",
+        "available": "90",
         "description": "We will ensure that you enjoy your 7-day vacation by providing free food and transporting you to all of the beautiful destinations.",
         "img": "https://i.ibb.co/HGPLfn5/3.png"
     }

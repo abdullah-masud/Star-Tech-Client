@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 
@@ -8,8 +9,9 @@ const Purchase = () => {
     const [part, setPart] = useState({});
     const [user] = useAuthState(auth);
 
-    const amountRef = useRef();
+    const quantityRef = useRef();
 
+    const { register, formState: { errors }, handleSubmit, getValues } = useForm();
 
     useEffect(() => {
         fetch(`http://localhost:5000/parts/${partId}`)
@@ -17,24 +19,37 @@ const Purchase = () => {
             .then(data => setPart(data))
     }, [])
 
-    const { name, price, minOrder, maxOrder, img } = part
-    const [totalOrder, setTotalOrder] = useState('')
+    const { name, price, minOrder, available, img } = part
+    const [order, setOrder] = useState('')
     const [error, setError] = useState('')
 
     const errorElement = <p className='text-red-500'>Please Order within the Range</p>
 
     const handleChangeAmount = () => {
-        const amount = amountRef.current.value;
-        console.log(amount)
-        if (amount >= minOrder && amount <= maxOrder) {
-            setTotalOrder(amount)
+        const quantiy = quantityRef.current.value;
+        console.log(quantiy)
+        if (parseInt(quantiy) >= parseInt(minOrder) && parseInt(quantiy) <= parseInt(available)) {
+            console.log("hello")
+            setOrder(quantiy)
             setError("")
-            amountRef.current.value = ""
+            quantityRef.current.value = ""
         }
         else {
+            console.log("not")
             setError(errorElement)
         }
     }
+
+    const onSubmit = data => {
+        const totalOrder = order || minOrder;
+        const totalPrice = (!order ? price * minOrder : order * price).toString()
+        const name = user?.displayName;
+        const email = user?.email;
+        const phoneNumber = data.phone;
+
+        console.log(`total Order: ${totalOrder}, total price: ${totalPrice}, name: ${name}, email: ${email}, phone: ${phoneNumber}`)
+
+    };
 
 
     return (
@@ -47,16 +62,13 @@ const Purchase = () => {
                     </figure>
                     <div className="card-body items-center text-center">
                         <h2 className="card-title">{name}</h2>
-                        <div className='flex w-full justify-between lg:flex-row flex-col items-center'>
+                        <div className='flex w-full justify-between  flex-col items-center'>
                             <div>
                                 <p className='text-xl font-semibold mb-2'>Min Order: {minOrder}</p>
-                                <p className='text-xl font-semibold'>Max Order: {maxOrder}</p>
+                                <p className='text-xl font-semibold mb-2'>Available: {available}</p>
                             </div>
                             <div>
-                                <p className='text-xl font-semibold mb-2'>Price: ${price}</p>
-
-                                <label for="amount-modal" class="btn modal-button btn-primary text-white btn-sm">Change Amount</label>
-
+                                <p className='text-xl font-semibold'>Price: ${price}</p>
                             </div>
                         </div>
                         <p>{error}</p>
@@ -65,16 +77,40 @@ const Purchase = () => {
 
                 <div class="card lg:max-w-lg bg-base-100 shadow-xl px-6">
                     <div class="card-body">
-                        <h2 class="uppercase font-bold text-3xl">Checkout</h2>
-                        <h2 class="card-title">Total Order: {!totalOrder ? minOrder : totalOrder}</h2>
-                        <h2 class="card-title">Total Price: ${!totalOrder ? minOrder : totalOrder * parseInt(price)}</h2>
+                        <h2 class="uppercase font-bold text-3xl mb-5">Checkout</h2>
+                        <div className='flex items-center'>
+                            <h2 class="card-title mr-2 text-2xl">Total Order: {!order ? minOrder : order}</h2>
+                            <label htmlFor="amount-modal" class="btn modal-button btn-primary text-white btn-xs">Change</label>
+                        </div>
+
+                        <h2 class="card-title text-2xl mb-5">Total Price: ${!order ? price * minOrder : order * price}</h2>
                         <div>
                             <input type="text" value={user?.displayName} disabled class="input input-bordered w-full max-w-xs mb-3 text-black font-bold" />
                             <input type="text" value={user?.email} disabled placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-                            <input type="text" placeholder="Phone" class="input input-bordered w-full max-w-xs mt-3" />
-                            <div className='flex lg:justify-end justify-center  max-w-xs'>
-                                <button className="btn btn-primary text-white btn-sm mt-3 ">Place Order</button>
-                            </div>
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <input
+                                    type="number"
+                                    placeholder="Phone"
+                                    class="input input-bordered w-full max-w-xs mt-3"
+                                    {...register("phone", {
+                                        required: {
+                                            value: true,
+                                            message: 'Phone Number is Required'
+                                        },
+                                        minLength: {
+                                            value: 6,
+                                            message: 'Must be 6 characters of longer'
+                                        }
+                                    })}
+                                />
+                                <label class="label">
+                                    {errors.phone?.type === 'required' && <span class="label-text-alt text-red-500">{errors.phone.message}</span>}
+                                    {errors.phone?.type === 'minLength' && <span class="label-text-alt text-red-500">{errors.phone.message}</span>}
+                                </label>
+                                <div className='flex lg:justify-end justify-center max-w-xs'>
+                                    <input value='Place Order' type='submit' className="btn btn-primary text-white btn-sm mt-3" />
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -83,12 +119,12 @@ const Purchase = () => {
             <input type="checkbox" id="amount-modal" class="modal-toggle" />
             <div class="modal modal-bottom sm:modal-middle">
                 <div class="modal-box flex flex-col justify-center">
-                    <label for="amount-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h2 class="uppercase text-xl font-bold mb-2 text-center">Enter order amount</h2>
+                    <label htmlFor="amount-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <h2 class="uppercase text-xl font-bold mb-2 text-center">Enter order Quantity</h2>
                     <input
                         type="number"
-                        ref={amountRef}
-                        placeholder='Amount' class="input input-bordered w-full mb-3 text-black font-bold"
+                        ref={quantityRef}
+                        placeholder='Quantity' class="input input-bordered w-full mb-3 text-black font-bold"
                     />
                     <div className='flex justify-center modal-action'>
                         <label onClick={handleChangeAmount} for='amount-modal' className='btn btn-primary text-white btn-sm mt-3'>Submit</label>

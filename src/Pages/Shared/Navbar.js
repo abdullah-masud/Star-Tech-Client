@@ -3,6 +3,7 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
+import { FiLogOut, FiLogIn } from "react-icons/fi";
 
 const Navbar = () => {
 
@@ -38,7 +39,11 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user ? <button onClick={logout} className='btn btn-outline btn-primary'>Sign out</button> : <Link to='/login' className="btn btn-outline btn-primary">Login</Link>
+                    user ? <>
+                        <p className='text-xl font-semibold mr-2'>{user?.displayName}</p>
+                        <button onClick={logout} className='btn btn-outline btn-primary btn-sm'><FiLogOut /></button>
+                    </>
+                        : <Link to='/login' className="btn btn-outline btn-primary btn-sm"><span className='mr-1'>Login</span>< FiLogIn /></Link>
                 }
             </div>
         </div >
