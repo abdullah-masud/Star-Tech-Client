@@ -13,6 +13,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Purchase from './Pages/Purchase/Purchase';
 import RequireAuth from './Pages/Login/RequireAuth';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import MyOrders from './Pages/Dashboard/MyOrders';
+import AddReview from './Pages/Dashboard/AddReview';
+import MyProfile from './Pages/Dashboard/MyProfile';
 
 function App() {
 
@@ -28,6 +32,15 @@ function App() {
         <Route path='home' element={<Home />} />
         <Route path='blogs' element={<Blogs />} />
         <Route path='purchase/:partId' element={<RequireAuth><Purchase /></RequireAuth>} />
+        <Route path='dashboard' element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        } >
+          <Route index element={<MyOrders />}></Route>
+          <Route path='addreview' element={<AddReview />}></Route>
+          <Route path='myprofile' element={<MyProfile />}></Route>
+        </Route>
         <Route path='login' element={<Login />} />
         <Route path='signup' element={<SignUp />} />
         <Route path='*' element={<NotFound />} />

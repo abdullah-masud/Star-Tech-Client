@@ -26,6 +26,7 @@ const SignUp = () => {
     }
 
     if (googleUser || emailUser) {
+        // console.log(googleUser)
         navigate('/home')
     }
 

@@ -3,6 +3,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
+import { MdOutlineShoppingCart } from "react-icons/md";
+import { toast } from 'react-toastify';
 
 const Purchase = () => {
     const { partId } = useParams();
@@ -17,10 +19,10 @@ const Purchase = () => {
         fetch(`http://localhost:5000/parts/${partId}`)
             .then(res => res.json())
             .then(data => setPart(data))
-    }, [])
+    }, [part])
 
     const { name, price, minOrder, available, img } = part
-    const [order, setOrder] = useState('')
+    const [orderTotal, setOrderTotal] = useState('')
     const [error, setError] = useState('')
 
     const errorElement = <p className='text-red-500'>Please Order within the Range</p>
@@ -30,7 +32,7 @@ const Purchase = () => {
         console.log(quantiy)
         if (parseInt(quantiy) >= parseInt(minOrder) && parseInt(quantiy) <= parseInt(available)) {
             console.log("hello")
-            setOrder(quantiy)
+            setOrderTotal(quantiy)
             setError("")
             quantityRef.current.value = ""
         }
@@ -41,13 +43,53 @@ const Purchase = () => {
     }
 
     const onSubmit = data => {
-        const totalOrder = order || minOrder;
-        const totalPrice = (!order ? price * minOrder : order * price).toString()
-        const name = user?.displayName;
+        const totalOrder = orderTotal || minOrder;
+        const totalPrice = (!orderTotal ? price * minOrder : orderTotal * price).toString()
+        const userName = user?.displayName;
         const email = user?.email;
         const phoneNumber = data.phone;
+        const productName = name;
 
         console.log(`total Order: ${totalOrder}, total price: ${totalPrice}, name: ${name}, email: ${email}, phone: ${phoneNumber}`)
+
+        // order info. 
+        const order = {
+            userName: userName,
+            email: email,
+            productName: productName,
+            phoneNumber: phoneNumber,
+            totalPrice: totalPrice,
+            totalOrder: totalOrder,
+        }
+
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+                toast.success('Added to cart')
+            })
+
+        const updatedAvailable = parseInt(available) - parseInt(totalOrder);
+
+        const remaining = { available: updatedAvailable.toString() };
+        const url = `http://localhost:5000/parts/${partId}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(remaining),
+        })
+            .then(res => res.json())
+            .then(info => {
+                console.log(info);
+            })
 
     };
 
@@ -79,11 +121,11 @@ const Purchase = () => {
                     <div class="card-body">
                         <h2 class="uppercase font-bold text-3xl mb-5">Checkout</h2>
                         <div className='flex items-center'>
-                            <h2 class="card-title mr-2 text-2xl">Total Order: {!order ? minOrder : order}</h2>
+                            <h2 class="card-title mr-2 lg:text-2xl">Total Order: {!orderTotal ? minOrder : orderTotal}</h2>
                             <label htmlFor="amount-modal" class="btn modal-button btn-primary text-white btn-xs">Change</label>
                         </div>
 
-                        <h2 class="card-title text-2xl mb-5">Total Price: ${!order ? price * minOrder : order * price}</h2>
+                        <h2 class="card-title  lg:text-2xl mb-5">Total Price: ${!orderTotal ? price * minOrder : orderTotal * price}</h2>
                         <div>
                             <input type="text" value={user?.displayName} disabled class="input input-bordered w-full max-w-xs mb-3 text-black font-bold" />
                             <input type="text" value={user?.email} disabled placeholder="Type here" class="input input-bordered w-full max-w-xs" />
@@ -108,7 +150,8 @@ const Purchase = () => {
                                     {errors.phone?.type === 'minLength' && <span class="label-text-alt text-red-500">{errors.phone.message}</span>}
                                 </label>
                                 <div className='flex lg:justify-end justify-center max-w-xs'>
-                                    <input value='Place Order' type='submit' className="btn btn-primary text-white btn-sm mt-3" />
+                                    <button type='submit' className="btn btn-primary text-white btn-sm mt-3" ><span className='mr-2'>
+                                        Add to Cart</span><MdOutlineShoppingCart /></button>
                                 </div>
                             </form>
                         </div>

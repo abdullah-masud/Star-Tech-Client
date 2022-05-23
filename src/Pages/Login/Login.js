@@ -31,12 +31,12 @@ const Login = () => {
     }
 
     if (googleUser || emailUser) {
-        console.log(googleUser)
+        // console.log(emailUser)
         navigate(from, { replace: true });
     }
 
     const onSubmit = data => {
-        console.log(data)
+        // console.log(data)
         signInWithEmailAndPassword(data.email, data.password);
     };
 
