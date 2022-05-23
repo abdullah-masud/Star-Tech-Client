@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const MyOrders = () => {
@@ -15,6 +16,23 @@ const MyOrders = () => {
         }
     }, [user])
 
+    const handleCancel = id => {
+        const proceed = window.confirm('Are you sure?')
+        if (proceed) {
+            const url = `http://localhost:5000/orders/${id}`
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    toast.success('Order Cancelled')
+                    console.log(data)
+                    const remaining = orders.filter(order => order._id !== id);
+                    setOrders(remaining);
+                })
+        }
+    }
+
     return (
         <div>
             <h2 className='text-2xl my-2'>My Orders : {orders.length}</h2>
@@ -27,6 +45,7 @@ const MyOrders = () => {
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +56,10 @@ const MyOrders = () => {
                                 <td>{order.productName}</td>
                                 <td>{order.totalOrder}</td>
                                 <td>${order.totalPrice}</td>
+                                <td>
+                                    <button class="btn btn-xs btn-success mr-2">Pay</button>
+                                    <button onClick={() => handleCancel(order._id)} class="btn btn-xs btn-error">Cancel</button>
+                                </td>
                             </tr>)
                         }
                     </tbody>
