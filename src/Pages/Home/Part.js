@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Part = ({ part }) => {
     const { name, img, description, minOrder, available, price, _id } = part
+
+    const [notAvailable, setNotAvailable] = useState('');
+
     const navigate = useNavigate();
     const navigateToPurchase = () => {
-        navigate(`/purchase/${_id}`)
+        if (available > 0) {
+            navigate(`/purchase/${_id}`)
+            setNotAvailable("")
+        }
+        else {
+            setNotAvailable("Not Available")
+        }
     }
 
     return (
@@ -25,8 +34,8 @@ const Part = ({ part }) => {
                         <p className='text-xl font-semibold mb-2'>Price: ${price}</p>
                         <button onClick={() => navigateToPurchase(_id)} className="btn btn-primary text-white btn-sm">Purchase</button>
                     </div>
-
                 </div>
+                <p className='text-red-500'>{notAvailable}</p>
             </div>
         </div>
     );

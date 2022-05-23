@@ -75,21 +75,20 @@ const Purchase = () => {
                 toast.success('Added to cart')
             })
 
-        const updatedAvailable = parseInt(available) - parseInt(totalOrder);
-
-        const remaining = { available: updatedAvailable.toString() };
-        const url = `http://localhost:5000/parts/${partId}`
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(remaining),
-        })
-            .then(res => res.json())
-            .then(info => {
-                console.log(info);
-            })
+        // const updatedAvailable = parseInt(available) - parseInt(totalOrder);
+        // const remaining = { available: updatedAvailable.toString() };
+        // const url = `http://localhost:5000/parts/${partId}`
+        // fetch(url, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(remaining),
+        // })
+        //     .then(res => res.json())
+        //     .then(info => {
+        //         console.log(info);
+        //     })
 
     };
 
@@ -166,6 +165,9 @@ const Purchase = () => {
                     <h2 class="uppercase text-xl font-bold mb-2 text-center">Enter order Quantity</h2>
                     <input
                         type="number"
+                        // value={minOrder}
+                        min={minOrder}
+                        max={available}
                         ref={quantityRef}
                         placeholder='Quantity' class="input input-bordered w-full mb-3 text-black font-bold"
                     />

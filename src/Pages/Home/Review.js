@@ -13,7 +13,7 @@ const Review = ({ review }) => {
                 <h2 className="card-title block">{name}</h2>
                 <p>{description}</p>
                 <div className="card-actions ">
-                    <p className="p-4 rounded-lg text-center uppercase font-semibold bg-primary text-white">Rating: {rating}</p>
+                    <p className="p-4 rounded-lg text-center uppercase font-semibold bg-primary text-white">Rating: {rating}/5</p>
                 </div>
             </div>
         </div>
