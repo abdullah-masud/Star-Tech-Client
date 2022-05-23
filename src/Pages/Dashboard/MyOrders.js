@@ -38,20 +38,18 @@ const MyOrders = () => {
     }, [user])
 
     const handleCancel = id => {
-        const proceed = window.confirm('Are you sure?')
-        if (proceed) {
-            const url = `http://localhost:5000/orders/${id}`
-            fetch(url, {
-                method: 'DELETE'
+        const url = `http://localhost:5000/orders/${id}`
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('Order Cancelled')
+                console.log(data)
+                const remaining = orders.filter(order => order._id !== id);
+                setOrders(remaining);
             })
-                .then(res => res.json())
-                .then(data => {
-                    toast.success('Order Cancelled')
-                    console.log(data)
-                    const remaining = orders.filter(order => order._id !== id);
-                    setOrders(remaining);
-                })
-        }
+
     }
 
     return (
@@ -79,8 +77,22 @@ const MyOrders = () => {
                                 <td>${order.totalPrice}</td>
                                 <td>
                                     <button class="btn btn-xs btn-success mr-2">Pay</button>
-                                    <button onClick={() => handleCancel(order._id)} class="btn btn-xs btn-error">Cancel</button>
+                                    <label for="delete-modal" class="btn btn-xs btn-error">Cancel</label>
+
+
+                                    <input type="checkbox" id="delete-modal" class="modal-toggle" />
+                                    <div class="modal modal-bottom sm:modal-middle">
+                                        <div class="modal-box">
+                                            <h3 class="font-bold text-lg">Are You Sure ?</h3>
+                                            <div class="modal-action">
+                                                <label for="delete-modal" onClick={() => handleCancel(order._id)} class="btn btn-success">Yes</label>
+                                                <label for="delete-modal" class="btn btn-error">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </td>
+
                             </tr>)
                         }
                     </tbody>

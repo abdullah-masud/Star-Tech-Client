@@ -5,7 +5,12 @@ import UserRow from './UserRow';
 
 const AllUsers = () => {
 
-    const { data: users, isLoading } = useQuery('users', () => fetch('http://localhost:5000/users').then(res => res.json()))
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/users', {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => res.json()))
 
     if (isLoading) {
         return <Loading></Loading>
@@ -13,7 +18,7 @@ const AllUsers = () => {
 
     return (
         <div>
-            <h2 className='text-2xl my-2'>All Users: {users.length} </h2>
+            <h2 className='text-2xl my-2'>All Users</h2>
             <div class="overflow-x-auto">
                 <table class="table w-full">
                     <thead>
@@ -30,6 +35,7 @@ const AllUsers = () => {
                                 key={user._id}
                                 user={user}
                                 index={index}
+                                refetch={refetch}
                             ></UserRow>)
                         }
                     </tbody>
