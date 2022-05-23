@@ -50,7 +50,6 @@ const Purchase = () => {
         const phoneNumber = data.phone;
         const productName = name;
 
-        console.log(`total Order: ${totalOrder}, total price: ${totalPrice}, name: ${name}, email: ${email}, phone: ${phoneNumber}`)
 
         // order info. 
         const order = {

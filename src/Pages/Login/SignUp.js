@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import Loading from '../Shared/Loading';
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -13,6 +14,8 @@ const SignUp = () => {
     const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    const [token] = useToken(googleUser || emailUser);
 
     let errorElement;
     const navigate = useNavigate();
@@ -25,18 +28,16 @@ const SignUp = () => {
         errorElement = <p className='text-red-500'><small>{emailError?.message || googleError?.message || updateError?.message}</small></p>
     }
 
-    if (googleUser || emailUser) {
-        // console.log(googleUser)
+    if (token) {
         navigate('/home')
     }
 
     const onSubmit = async data => {
-        console.log(data)
-        createUserWithEmailAndPassword(data.email, data.password);
+        console.log(data.name)
+        await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
-        console.log('update done')
-        navigate('/home')
     };
+
     return (
         <div className='max-w-7xl mx-auto h-screen flex justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import Loading from '../Shared/Loading';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useToken from '../../hooks/useToken';
 
 
 const Login = () => {
@@ -17,10 +18,18 @@ const Login = () => {
 
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
+    const [token] = useToken(emailUser || googleUser)
+
     let errorElement;
     const navigate = useNavigate();
     const location = useLocation()
     let from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate])
 
     if (googleLoading || emailLoading || sending) {
         return <Loading />
@@ -28,11 +37,6 @@ const Login = () => {
 
     if (googleError || emailError) {
         errorElement = <p className='text-red-500'><small>{emailError?.message || googleError?.message}</small></p>
-    }
-
-    if (googleUser || emailUser) {
-        // console.log(emailUser)
-        navigate(from, { replace: true });
     }
 
     const onSubmit = data => {
