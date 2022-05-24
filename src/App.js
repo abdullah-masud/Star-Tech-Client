@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Blogs from './Pages/Blogs/Blogs';
 import Home from './Pages/Home/Home';
@@ -22,12 +22,14 @@ import RequireAdmin from './Pages/Login/RequireAdmin';
 import AddProducts from './Pages/Dashboard/AddProducts';
 import MyPortfolio from './Pages/Portfolio/MyPortfolio';
 import Footer from './Pages/Shared/Footer';
+import AllParts from './Pages/Home/AllParts';
+
 
 function App() {
-
   useEffect(() => {
     AOS.init();
   }, [])
+
 
   return (
     <div>
@@ -36,6 +38,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='home' element={<Home />} />
         <Route path='blogs' element={<Blogs />} />
+        <Route path='allparts' element={<AllParts />} />
         <Route path='portfolio' element={<MyPortfolio />} />
         <Route path='purchase/:partId' element={<RequireAuth><Purchase /></RequireAuth>} />
 
