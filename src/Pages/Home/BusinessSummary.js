@@ -5,8 +5,8 @@ import feedback from '../../images/svg/feedback.svg'
 
 const BusinessSummary = () => {
     return (
-        <div className='lg:my-28 my-20 flex justify-center flex-col max-w-7xl mx-auto' data-aos="fade-left" data-aos-duration='800' data-aos-delay='200'>
-            {/* <h2 className='text-center lg:text-5xl text-2xl lg:mb-20 mt-14 uppercase'>Customers Summary</h2> */}
+        <div className='lg:my-28 my-20 mt-20 flex justify-center flex-col max-w-7xl mx-auto' data-aos="fade-left" data-aos-duration='800' data-aos-delay='200'>
+            <h2 className='text-center lg:text-5xl text-2xl lg:mb-20 mt-14 uppercase'>Business Summary</h2>
             <div className="stats w-full  text-center stats-vertical lg:stats-horizontal shadow">
                 <div className="stat">
                     <div className="lg:w-32 w-24 mx-auto">
