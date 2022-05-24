@@ -20,6 +20,7 @@ import MyProfile from './Pages/Dashboard/MyProfile';
 import AllUsers from './Pages/Dashboard/AllUsers';
 import RequireAdmin from './Pages/Login/RequireAdmin';
 import AddProducts from './Pages/Dashboard/AddProducts';
+import MyPortfolio from './Pages/Portfolio/MyPortfolio';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='home' element={<Home />} />
         <Route path='blogs' element={<Blogs />} />
+        <Route path='portfolio' element={<MyPortfolio />} />
         <Route path='purchase/:partId' element={<RequireAuth><Purchase /></RequireAuth>} />
 
         <Route path='dashboard' element={
