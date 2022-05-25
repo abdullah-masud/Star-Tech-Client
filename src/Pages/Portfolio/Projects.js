@@ -5,7 +5,7 @@ import tourInc from '../../images/tour.inc.png'
 
 const Projects = () => {
     return (
-        <div className='hero mb-16'>
+        <div className='hero mb-16' data-aos="fade-down-left" data-aos-duration='800' data-aos-delay='200'>
             <div className='lg:w-11/12 mt-16  '>
                 <h2 className='lg:text-3xl text-center font-semibold uppercase lg:mt-16 lg:mb-0 mb-8'>Projects</h2>
                 <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto px-6 lg:mt-12 '>

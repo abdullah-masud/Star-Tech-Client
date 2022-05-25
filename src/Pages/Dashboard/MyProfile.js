@@ -76,7 +76,7 @@ const MyProfile = () => {
                 </div>
             </div >
 
-            <div className="ml-3 card w-96 bg-base-100 shadow-xl">
+            <div className="lg:ml-3 card w-96 bg-base-100 shadow-xl mt-3 lg:mt-0">
                 <div className="card-body">
 
                     <form onSubmit={handleSubmit(onSubmit)}>

@@ -25,7 +25,7 @@ const AllUsers = () => {
                             <th></th>
                             <th>Email</th>
                             <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Remove</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,6 +35,7 @@ const AllUsers = () => {
                                 user={user}
                                 index={index}
                                 refetch={refetch}
+                                users={users}
                             ></UserRow>)
                         }
                     </tbody>

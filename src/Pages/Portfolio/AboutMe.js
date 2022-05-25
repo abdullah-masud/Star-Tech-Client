@@ -8,7 +8,7 @@ const AboutMe = () => {
         <div className='hero'>
             <div className='lg:w-11/12 lg:mt-16 '>
                 <div className='flex flex-col lg:flex-row lg:justify-around '>
-                    <div className='  '>
+                    <div className='  ' data-aos="fade-right" data-aos-duration='800' data-aos-delay='200'>
                         <div className=''>
                             <h2 className='text-3xl text-primary font-semibold'>Education</h2>
                         </div>
@@ -18,7 +18,7 @@ const AboutMe = () => {
                         </div>
                     </div>
 
-                    <div className='lg:mt-0 mt-12 '>
+                    <div className='lg:mt-0 mt-12 ' data-aos="fade-left" data-aos-duration='800' data-aos-delay='200'>
                         <h2 className='text-3xl font-semibold'>Get in touch!</h2>
                         <h2 className='flex items-center text-lg'><MdEmail /><span className='ml-2'>masudctg00@gmail.com</span></h2>
 

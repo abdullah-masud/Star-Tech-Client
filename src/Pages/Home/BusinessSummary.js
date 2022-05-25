@@ -5,7 +5,7 @@ import feedback from '../../images/svg/feedback.svg'
 
 const BusinessSummary = () => {
     return (
-        <div className='  lg:my-0 mb-12 lg:mb-0 flex justify-center flex-col max-w-7xl mx-auto' >
+        <div className='lg:my-0 mb-12 lg:mb-0 flex justify-center flex-col max-w-7xl mx-auto' >
             <h2 className='text-center lg:text-5xl text-2xl lg:mb-20 mt-14 uppercase'>Business Summary</h2>
             <div className="stats w-full  text-center stats-vertical lg:stats-horizontal shadow">
                 <div className="stat">

@@ -26,6 +26,7 @@ import AllParts from './Pages/Home/AllParts';
 import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
 import Payment from './Pages/Dashboard/Payment';
+import AllReviews from './Pages/Home/AllReviews';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path='home' element={<Home />} />
         <Route path='blogs' element={<Blogs />} />
         <Route path='allparts' element={<AllParts />} />
+        <Route path='allreviews' element={<AllReviews />} />
         <Route path='portfolio' element={<MyPortfolio />} />
         <Route path='purchase/:partId' element={<RequireAuth><Purchase /></RequireAuth>} />
 
