@@ -1,22 +1,83 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const MyProfile = () => {
-    const { register, formState: { errors }, handleSubmit, getValues, reset } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const [user] = useAuthState(auth);
 
+    const { data: profile, refetch } = useQuery('profile', () => fetch(`http://localhost:5000/users/${user.email}`).then(res => res.json()))
+
+
     const onSubmit = data => {
-        console.log(data)
+        const email = user?.email;
+        const userName = user?.displayName
+        const education = data.education
+        const address = data.address;
+        const linkedIn = data.linkedIn;
+
+        const updatedProfile = {
+            email,
+            userName,
+            education,
+            address,
+            linkedIn
+        }
+
+        fetch(`http://localhost:5000/users/${email}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedProfile)
+        })
+            .then(res => res.json())
+            .then(result => {
+                reset()
+                toast.success('Profile Updated')
+                // console.log(result);
+                refetch()
+            })
     }
 
+
+
     return (
-        <div className='max-w-7xl mx-auto lg:mt-16 flex justify-center items-center'>
+        <div className='max-w-7xl mx-auto lg:mt-16 lg:flex  justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="card-title text-center block text-3xl">My Profile</h2>
+                    <h2 className="card-title text-center block text-3xl mb-6">My Profile</h2>
+
+                    <div>
+                        <label className='text-xl'>Name</label>
+                        <h2 className='text-xl font-semibold mt-2'>{user?.displayName}</h2>
+                    </div>
+                    <div className='my-6'>
+                        <label className='text-xl'>Email</label>
+                        <h2 className='text-xl font-semibold mt-2'>{user?.email}</h2>
+                    </div>
+                    <div>
+                        <label className='text-xl'>Education</label>
+                        <h2 className='text-xl font-semibold mt-2'>{profile?.education}</h2>
+                    </div>
+                    <div className='my-6'>
+                        <label className='text-xl'>Location</label>
+                        <h2 className='text-xl font-semibold mt-2'>{profile?.address}</h2>
+                    </div>
+                    <div>
+                        <label className='text-xl'>LinkedIn</label>
+                        <h2 className='text-xl font-semibold mt-2'>{profile?.linkedIn}</h2>
+                    </div>
+
+                </div>
+            </div >
+
+            <div className="ml-3 card w-96 bg-base-100 shadow-xl">
+                <div className="card-body">
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {/* Name input starts */}
@@ -80,17 +141,17 @@ const MyProfile = () => {
                             </label>
                             <input
                                 type="text"
-                                placeholder="City/Country"
+                                placeholder="Address"
                                 class="input input-bordered w-full max-w-xs"
-                                {...register("location", {
+                                {...register("address", {
                                     required: {
                                         value: true,
-                                        message: 'Location is Required'
+                                        message: 'Address is Required'
                                     }
                                 })}
                             />
                             <label class="label">
-                                {errors.location?.type === 'required' && <span class="label-text-alt text-red-500">{errors.location.message}</span>}
+                                {errors.address?.type === 'required' && <span class="label-text-alt text-red-500">{errors.address.message}</span>}
                             </label>
                         </div>
                         {/* Location input ends */}

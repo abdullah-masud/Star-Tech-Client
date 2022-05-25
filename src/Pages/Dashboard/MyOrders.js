@@ -55,8 +55,8 @@ const MyOrders = () => {
     return (
         <div>
             <h2 className='text-2xl my-2'>My Orders</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full ">
+            <div class="overflow-x-auto ">
+                <table class="table lg:w-full">
                     <thead>
                         <tr>
                             <th></th>
@@ -69,18 +69,27 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) => <tr>
+                            orders.map((order, index) => <tr key={order._id}>
                                 <th>{index + 1}</th>
                                 <td>{order.userName}</td>
                                 <td>{order.productName}</td>
                                 <td>{order.totalOrder}</td>
                                 <td>${order.totalPrice}</td>
                                 <td>
-                                    {(order.totalPrice && !order.paid) && <Link to={`/dashboard/payment/${order._id}`} className='btn btn-xs btn-success mr-2'>Pay</Link>}
+                                    {(order.totalPrice && !order.paid) && <Link to={`/dashboard/payment/${order._id}`} className='btn btn-outline btn-xs btn-success mr-2'>Pay</Link>}
 
-                                    {(order.totalPrice && order.paid) && <span className='text-success'>Pending</span>}
 
-                                    <label for="delete-modal" class="btn btn-xs btn-error">Cancel</label>
+                                    {(order.totalPrice && order.paid) &&
+                                        <div>
+                                            <p className='btn btn-xs btn-success mr-2 font-bold'>Paid</p>
+                                            <p className='text-xs'>Transaction ID: <br></br>{order.transactionId}</p>
+                                        </div>
+                                    }
+
+                                    {
+                                        !order.paid && <label for="delete-modal" class="btn btn-xs btn-error">Cancel</label>
+                                    }
+
 
 
                                     <input type="checkbox" id="delete-modal" class="modal-toggle" />
