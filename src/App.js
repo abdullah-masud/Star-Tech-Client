@@ -23,6 +23,8 @@ import AddProducts from './Pages/Dashboard/AddProducts';
 import MyPortfolio from './Pages/Portfolio/MyPortfolio';
 import Footer from './Pages/Shared/Footer';
 import AllParts from './Pages/Home/AllParts';
+import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
+import ManageProducts from './Pages/Dashboard/ManageProducts';
 
 
 function App() {
@@ -47,11 +49,13 @@ function App() {
             <Dashboard />
           </RequireAuth>
         } >
-          <Route index element={<MyOrders />}></Route>
+          <Route index element={<MyProfile />}></Route>
+          <Route path='myorders' element={<MyOrders />}></Route>
           <Route path='addreview' element={<AddReview />}></Route>
-          <Route path='myprofile' element={<MyProfile />}></Route>
           <Route path='users' element={<RequireAdmin><AllUsers /></RequireAdmin>}></Route>
           <Route path='addProduct' element={<RequireAdmin><AddProducts /></RequireAdmin>}></Route>
+          <Route path='manageorders' element={<RequireAdmin><ManageAllOrders /></RequireAdmin>}></Route>
+          <Route path='manageproducts' element={<RequireAdmin><ManageProducts /></RequireAdmin>}></Route>
         </Route>
 
         <Route path='login' element={<Login />} />

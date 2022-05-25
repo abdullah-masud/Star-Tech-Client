@@ -10,7 +10,7 @@ const useParts = () => {
             .then(data => setParts(data))
     })
 
-    return [parts];
+    return [parts, setParts];
 }
 
 export default useParts;
