@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import useParts from '../../hooks/useParts';
+import DeleteModal from './DeleteModal';
 
 const ManageProducts = () => {
     const [parts, setParts] = useParts();
+
+    const [productData, setProductData] = useState(null);
 
 
     const handleCancel = id => {
@@ -41,24 +44,16 @@ const ManageProducts = () => {
                                 <td>${part.name}</td>
                                 <td>${part.price}</td>
                                 <td>
-                                    <label for="delete-modal2" class="btn btn-xs btn-error">Delete</label>
-
-                                    <input type="checkbox" id="delete-modal2" class="modal-toggle" />
-                                    <div class="modal modal-bottom sm:modal-middle">
-                                        <div class="modal-box">
-                                            <h3 class="font-bold text-lg">Are You Sure ?</h3>
-                                            <div class="modal-action">
-                                                <label for="delete-modal2"
-                                                    onClick={() => handleCancel(part._id)}
-                                                    class="btn btn-success">Yes</label>
-                                                <label for="delete-modal2" class="btn btn-error">No</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <label for="delete-modal"
+                                        onClick={() => setProductData(part._id)}
+                                        class="btn btn-xs btn-error">Delete</label>
                                 </td>
                             </tr>)
                         }
                     </tbody>
+                    {
+                        productData && <DeleteModal productData={productData} handleCancel={handleCancel} />
+                    }
                 </table>
             </div>
         </div>

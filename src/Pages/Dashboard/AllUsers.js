@@ -24,8 +24,7 @@ const AllUsers = () => {
                         <tr>
                             <th></th>
                             <th>Email</th>
-                            <th>Job</th>
-                            <th>Remove</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>

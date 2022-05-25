@@ -13,7 +13,7 @@ const Purchase = () => {
 
     const quantityRef = useRef();
 
-    const { register, formState: { errors }, handleSubmit, getValues } = useForm();
+    const { register, formState: { errors }, handleSubmit, getValues, reset } = useForm();
 
     useEffect(() => {
         fetch(`http://localhost:5000/parts/${partId}`)
@@ -49,6 +49,7 @@ const Purchase = () => {
         const email = user?.email;
         const phoneNumber = data.phone;
         const productName = name;
+        const address = data.address
 
 
         // order info. 
@@ -59,6 +60,7 @@ const Purchase = () => {
             phoneNumber: phoneNumber,
             totalPrice: totalPrice,
             totalOrder: totalOrder,
+            address
         }
 
         fetch('http://localhost:5000/orders', {
@@ -70,7 +72,8 @@ const Purchase = () => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result)
+                // console.log(result)
+                reset()
                 toast.success('Added to cart')
             })
 
@@ -128,6 +131,7 @@ const Purchase = () => {
                             <input type="text" value={user?.displayName} disabled class="input input-bordered w-full max-w-xs mb-3 text-black font-bold" />
                             <input type="text" value={user?.email} disabled placeholder="Type here" class="input input-bordered w-full max-w-xs" />
                             <form onSubmit={handleSubmit(onSubmit)}>
+                                {/* Phone Input */}
                                 <input
                                     type="number"
                                     placeholder="Phone"
@@ -147,6 +151,28 @@ const Purchase = () => {
                                     {errors.phone?.type === 'required' && <span class="label-text-alt text-red-500">{errors.phone.message}</span>}
                                     {errors.phone?.type === 'minLength' && <span class="label-text-alt text-red-500">{errors.phone.message}</span>}
                                 </label>
+                                {/* Phone Input Ends*/}
+
+                                {/* Address input starts */}
+                                <div class="form-control w-full max-w-xs">
+                                    <textarea
+                                        type="text"
+
+                                        placeholder="Address"
+                                        class="input input-bordered w-full max-w-xs h-20"
+                                        {...register("address", {
+                                            required: {
+                                                value: true,
+                                                message: 'Address is Required'
+                                            }
+                                        })}
+                                    />
+                                    <label class="label">
+                                        {errors.address?.type === 'required' && <span class="label-text-alt text-red-500">{errors.address.message}</span>}
+                                    </label>
+                                </div>
+                                {/* Address input ends */}
+
                                 <div className='flex lg:justify-end justify-center max-w-xs'>
                                     <button type='submit' className="btn btn-primary text-white btn-sm mt-3" ><span className='mr-2'>
                                         Add to Cart</span><MdOutlineShoppingCart /></button>

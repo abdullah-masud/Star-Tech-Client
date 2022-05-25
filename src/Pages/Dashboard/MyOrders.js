@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import CancelModal from './CancelModal';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
@@ -12,7 +13,7 @@ const MyOrders = () => {
 
     const navigate = useNavigate()
 
-    const [deleteModal, setDeleteModal] = useState('')
+    const [orderData, setOrderData] = useState(null)
 
 
     useEffect(() => {
@@ -40,20 +41,17 @@ const MyOrders = () => {
     }, [user, navigate, orders])
 
     const handleCancel = (id) => {
-        console.log(id)
-
-        // const url = `http://localhost:5000/orders/${id}`
-        // fetch(url, {
-        //     method: 'DELETE'
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         toast.success('Order Cancelled')
-        //         console.log(data)
-        //         const remaining = orders.filter(order => order._id !== id);
-        //         setOrders(remaining);
-        //     })
-
+        const url = `http://localhost:5000/orders/${id}`
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('Order Cancelled')
+                // console.log(data)
+                const remaining = orders.filter(order => order._id !== id);
+                setOrders(remaining);
+            })
     }
 
     return (
@@ -69,7 +67,6 @@ const MyOrders = () => {
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Status</th>
-                            <th>id</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,7 +77,6 @@ const MyOrders = () => {
                                 <td>{order.productName}</td>
                                 <td>{order.totalOrder}</td>
                                 <td>${order.totalPrice}</td>
-                                <td>${order._id}</td>
                                 <td>
                                     {(order.totalPrice && !order.paid && !order.shipped) && <Link to={`/dashboard/payment/${order._id}`} className='btn btn-outline btn-xs btn-success mr-2'>Pay</Link>}
 
@@ -97,27 +93,17 @@ const MyOrders = () => {
                                     }
 
                                     {
-                                        !order.paid && !order.shipped && <label for="delete-modal" onClick={() => handleCancel(order._id)} class="btn btn-xs btn-error">Cancel</label>
+                                        !order.paid && !order.shipped &&
+                                        <label onClick={() => setOrderData(order._id)} for="cancel-modal" class="btn btn-xs btn-error">Cancel</label>
                                     }
 
-
-
-                                    <input type="checkbox" id="delete-modal" class="modal-toggle" />
-                                    <div class="modal modal-bottom sm:modal-middle">
-                                        <div class="modal-box">
-                                            <h3 class="font-bold text-lg">Are You Sure ?</h3>
-                                            <div class="modal-action">
-                                                <label name='cancel' id='yes' for="delete-modal" class="btn btn-success">Yes</label>
-                                                <label for="delete-modal" class="btn btn-error">No</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </td>
-
                             </tr>)
                         }
                     </tbody>
+                    {
+                        orderData && <CancelModal orderData={orderData} handleCancel={handleCancel} />
+                    }
                 </table>
             </div>
         </div >

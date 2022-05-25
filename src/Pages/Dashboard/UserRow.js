@@ -50,21 +50,8 @@ const UserRow = ({ user, index, refetch, users }) => {
                     :
                     <button onClick={makeAdmin} class="btn btn-outline btn-xs btn-primary">Make Admin</button>
             }</td>
-            <td><label for="delete-modal3" class="btn btn-outline btn-xs btn-error">Remove User</label></td>
 
 
-            {/* MOdal */}
-            <input type="checkbox" id="delete-modal3" class="modal-toggle" />
-            <div class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box">
-                    <h3 class="font-bold text-lg">Are You Sure ?</h3>
-                    <div class="modal-action">
-                        <label for="delete-modal3" onClick={() => handleDelete(_id)} class="btn btn-success">Yes</label>
-                        <label for="delete-modal3" class="btn btn-error">No</label>
-                    </div>
-                </div>
-            </div>
-            {/* MOdal ends */}
         </tr>
     );
 };

@@ -19,13 +19,15 @@ const MyProfile = () => {
         const education = data.education
         const address = data.address;
         const linkedIn = data.linkedIn;
+        const phone = data.phone
 
         const updatedProfile = {
             email,
             userName,
             education,
             address,
-            linkedIn
+            linkedIn,
+            phone
         }
 
         fetch(`http://localhost:5000/users/${email}`, {
@@ -60,15 +62,19 @@ const MyProfile = () => {
                         <label className='text-xl'>Email</label>
                         <h2 className='text-xl font-semibold mt-2'>{user?.email}</h2>
                     </div>
-                    <div>
+                    <div className=''>
+                        <label className='text-xl'>Phone</label>
+                        <h2 className='text-xl font-semibold mt-2'>{profile?.phone}</h2>
+                    </div>
+                    <div className='my-6'>
                         <label className='text-xl'>Education</label>
                         <h2 className='text-xl font-semibold mt-2'>{profile?.education}</h2>
                     </div>
-                    <div className='my-6'>
+                    <div >
                         <label className='text-xl'>Location</label>
                         <h2 className='text-xl font-semibold mt-2'>{profile?.address}</h2>
                     </div>
-                    <div>
+                    <div className='my-6'>
                         <label className='text-xl'>LinkedIn</label>
                         <h2 className='text-xl font-semibold mt-2'>{profile?.linkedIn}</h2>
                     </div>
@@ -111,6 +117,28 @@ const MyProfile = () => {
                             />
                         </div>
                         {/* Email input ends */}
+
+                        {/* Phone input starts */}
+                        <div class="form-control w-full max-w-xs">
+                            <label class="label">
+                                <span class="label-text">Phone</span>
+                            </label>
+                            <input
+                                type="number"
+                                placeholder="Phone"
+                                class="input input-bordered w-full max-w-xs"
+                                {...register("phone", {
+                                    required: {
+                                        value: true,
+                                        message: 'Phone is Required'
+                                    }
+                                })}
+                            />
+                            <label class="label">
+                                {errors.phone?.type === 'required' && <span class="label-text-alt text-red-500">{errors.phone.message}</span>}
+                            </label>
+                        </div>
+                        {/* Phone input ends */}
 
                         {/* Education input starts */}
                         <div class="form-control w-full max-w-xs">

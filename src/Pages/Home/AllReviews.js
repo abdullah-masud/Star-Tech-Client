@@ -13,7 +13,7 @@ const AllReviews = () => {
                         key={review._id}
                         review={review}
 
-                    ></Review>)
+                    ></Review>).reverse()
                 }
             </div>
         </div>

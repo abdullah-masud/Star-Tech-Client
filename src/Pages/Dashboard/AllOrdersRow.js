@@ -33,7 +33,7 @@ const AllOrdersRow = ({ order, index }) => {
             <td>
                 <div>
                     {paid && <p className='btn btn-xs btn-success mr-2'>Pending</p>}
-                    {shipped && <p className='btn btn-xs btn-success mr-2'>Shipped</p>}
+                    {shipped && <p className='btn btn-xs btn-success mr-2 font-bold'>Shipped</p>}
                     {!paid && !shipped && <p className='btn btn-xs btn-error mr-2'>Unpaid</p>}
                     {paid && <button onClick={() => handleShipped(_id)} className='btn btn-outline btn-primary btn-xs'>Ship</button>}
                 </div>

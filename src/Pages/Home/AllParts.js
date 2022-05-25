@@ -13,7 +13,7 @@ const Parts = () => {
                         key={part._id}
                         part={part}
 
-                    ></Part>)
+                    ></Part>).reverse()
                 }
             </div>
         </div>

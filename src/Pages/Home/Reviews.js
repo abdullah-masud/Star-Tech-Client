@@ -21,10 +21,10 @@ const Reviews = () => {
             </div>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' data-aos="fade-right" data-aos-duration='800' data-aos-delay='200'>
                 {
-                    reviews.slice(0, 3).map(review => <Review
+                    reviews.map(review => <Review
                         key={review._id}
                         review={review}
-                    ></Review>)
+                    ></Review>).reverse().slice(0, 3)
                 }
             </div>
             <div className='flex lg:justify-end justify-center mt-3' data-aos="fade-right" data-aos-duration='800' data-aos-delay='200'>
