@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
@@ -22,7 +22,7 @@ const MyOrders = () => {
                 }
             })
                 .then(res => {
-                    console.log('res', res)
+                    // console.log('res', res)
                     if (res.status === 401 || res.status === 403) {
                         signOut(auth)
                         localStorage.removeItem('accessToken');
@@ -76,7 +76,10 @@ const MyOrders = () => {
                                 <td>{order.totalOrder}</td>
                                 <td>${order.totalPrice}</td>
                                 <td>
-                                    <button class="btn btn-xs btn-success mr-2">Pay</button>
+                                    {(order.totalPrice && !order.paid) && <Link to={`/dashboard/payment/${order._id}`} className='btn btn-xs btn-success mr-2'>Pay</Link>}
+
+                                    {(order.totalPrice && order.paid) && <span className='text-success'>Pending</span>}
+
                                     <label for="delete-modal" class="btn btn-xs btn-error">Cancel</label>
 
 
@@ -98,7 +101,7 @@ const MyOrders = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
 
