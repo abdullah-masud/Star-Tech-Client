@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
-const AllOrdersRow = ({ order, index }) => {
+const AllOrdersRow = ({ order, index, setOrderCancel }) => {
 
     const { userName, email, productName, totalPrice, paid, _id, shipped } = order
-    // console.log(paid)
 
     const handleShipped = (id) => {
         const paid = false
@@ -25,6 +24,12 @@ const AllOrdersRow = ({ order, index }) => {
             })
     }
 
+
+
+
+
+
+
     return (
         <Tr>
             <Th className='hidden lg:block '>{index + 1}</Th>
@@ -34,9 +39,14 @@ const AllOrdersRow = ({ order, index }) => {
             <Td className=' text-center'>${totalPrice}</Td>
             <Td className=' text-center'>
                 <div>
-                    {paid && <p className='btn btn-xs btn-success mr-2'>Pending</p>}
+                    {paid && <p className='btn btn-xs btn-info mr-2'>Pending</p>}
                     {shipped && <p className='btn btn-xs btn-success mr-2 font-bold'>Shipped</p>}
-                    {!paid && !shipped && <p className='btn btn-xs btn-error mr-2'>Unpaid</p>}
+                    {!paid && !shipped && <div>
+                        <p className='btn btn-xs btn-error mr-2'>Unpaid</p>
+                        <label for="all-cancel-modal"
+                            onClick={() => setOrderCancel(_id)}
+                            class="btn btn-xs btn-error">Cancel</label>
+                    </div>}
                     {paid && <button onClick={() => handleShipped(_id)} className='btn btn-outline btn-primary btn-xs'>Ship</button>}
                 </div>
             </Td>

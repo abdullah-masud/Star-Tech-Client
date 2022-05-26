@@ -51,9 +51,10 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end hidden lg:block">
-                <div className='flex justify-end '>
+                <div className='flex justify-end items-center'>
                     {
                         user ? <>
+                            <p className='text-[12px] text-primary font-semibold mr-2'>{user?.displayName}</p>
                             <button onClick={logout} className='btn btn-outline btn-primary btn-sm'><FiLogOut /></button>
                         </>
                             : <Link to='/login' className="btn btn-outline btn-primary btn-sm"><span className='mr-1'>Login</span>< FiLogIn /></Link>
@@ -61,7 +62,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div className='navbar-end lg:hidden'>
-
+                <p className='text-[12px] text-primary font-semibold '>{user?.displayName}</p>
                 <label for="dashboardSidebar" tabIndex="1" className="btn btn-ghost lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                 </label>

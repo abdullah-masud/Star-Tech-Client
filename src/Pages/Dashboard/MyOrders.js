@@ -84,13 +84,17 @@ const MyOrders = () => {
 
                                 {(order.totalPrice && order.paid) &&
                                     <div>
-                                        <p className='btn btn-xs btn-success mr-2 font-bold'>Pending</p>
+                                        <p className='btn btn-xs btn-info mr-2 font-bold'>Pending</p>
                                         <p className='text-xs'>Transaction ID: <br></br>{order.transactionId}</p>
                                     </div>
                                 }
 
                                 {
-                                    order.shipped && !order.paid && <p className='btn btn-xs btn-success mr-2 font-bold'>Shipped</p>
+                                    order.shipped && !order.paid &&
+                                    <div>
+                                        <p className='btn btn-xs btn-success mr-2 font-bold'>Shipped</p>
+                                        <p className='text-[10px] text-primary font-semibold '>Transaction ID <br></br>{order.transactionId}</p>
+                                    </div>
                                 }
 
                                 {
