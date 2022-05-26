@@ -10,7 +10,12 @@ const ManageAllOrders = () => {
     const [orderCancel, setOrderCancel] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('http://localhost:5000/allorders', {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
             .then(res => res.json())
             .then(data => setAllOrders(data));
     }, [allorders])
@@ -19,6 +24,7 @@ const ManageAllOrders = () => {
         const url = `http://localhost:5000/orders/${id}`
         fetch(url, {
             method: 'DELETE'
+
         })
             .then(res => res.json())
             .then(data => {
