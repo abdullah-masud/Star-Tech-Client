@@ -37,8 +37,8 @@ const Blogs = () => {
                 </div>
                 <div class="card w-4/5 bg-base-100 shadow-xl lg:mb-16">
                     <div class="card-body">
-                        <h2 class="card-title">Card title!</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                        <h2 class="card-title"> Why you do not set the state directly in React. For example, if you have const [products, setProducts] = useState([]). Why you do not set products = [...] instead, you use the setProducts</h2>
+                        <p>One should never update the state directly because If you update it directly, calling the setState() afterward may just replace the update you made and later when you want to update the state, it doest not the change the state immediately</p>
 
                     </div>
                 </div>

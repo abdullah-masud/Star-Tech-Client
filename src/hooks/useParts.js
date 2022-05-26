@@ -8,7 +8,7 @@ const useParts = () => {
         fetch('http://localhost:5000/parts')
             .then(res => res.json())
             .then(data => setParts(data))
-    })
+    }, [parts])
 
     return [parts, setParts];
 }
