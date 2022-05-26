@@ -1,6 +1,8 @@
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import UserRow from './UserRow';
+import { Table, Thead, Tbody, Tr, Th } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const AllUsers = () => {
 
@@ -18,28 +20,28 @@ const AllUsers = () => {
     return (
         <div>
             <h2 className='text-2xl my-2'>All Users</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Email</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            users.map((user, index) => <UserRow
-                                key={user._id}
-                                user={user}
-                                index={index}
-                                refetch={refetch}
-                                users={users}
-                            ></UserRow>)
-                        }
-                    </tbody>
-                </table>
-            </div>
+            <Table className='table w-full'>
+                <Thead>
+                    <Tr>
+                        <Th className='hidden lg:block'>no.</Th>
+                        <Th className='text-center'>Email</Th>
+                        <Th className='text-center'>Status</Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
+                    {
+                        users.map((user, index) => <UserRow
+                            key={user._id}
+                            user={user}
+                            index={index}
+                            refetch={refetch}
+                            users={users}
+                        />
+
+                        )
+                    }
+                </Tbody>
+            </Table>
         </div>
     );
 };

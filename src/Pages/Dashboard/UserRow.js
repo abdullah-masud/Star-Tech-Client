@@ -1,8 +1,10 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import { Tr, Th, Td } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const UserRow = ({ user, index, refetch, users }) => {
-    const { email, role, _id } = user;
+    const { email, role } = user;
 
     const makeAdmin = () => {
         fetch(`http://localhost:5000/users/admin/${email}`, {
@@ -25,34 +27,32 @@ const UserRow = ({ user, index, refetch, users }) => {
             })
     }
 
-    const handleDelete = id => {
-        const url = `http://localhost:5000/users/${id}`
-        fetch(url, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                toast.success('User Deleted')
-                console.log(data)
-                refetch()
-            })
+    // const handleDelete = id => {
+    //     const url = `http://localhost:5000/users/${id}`
+    //     fetch(url, {
+    //         method: 'DELETE'
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             toast.success('User Deleted')
+    //             console.log(data)
+    //             refetch()
+    //         })
 
-    }
+    // }
 
 
 
     return (
-        <tr>
-            <th>{index + 1}</th>
-            <td>{email}</td>
-            <td>{
+        <Tr>
+            <Th className='hidden lg:block '>{index + 1}</Th>
+            <Td className=' text-center'>{email}</Td>
+            <Td className=' text-center'>{
                 role === 'admin' ? <p className='btn btn-success btn-xs'>admin</p>
                     :
                     <button onClick={makeAdmin} class="btn btn-outline btn-xs btn-primary">Make Admin</button>
-            }</td>
-
-
-        </tr>
+            }</Td>
+        </Tr>
     );
 };
 

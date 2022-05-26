@@ -1,5 +1,7 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import { Tr, Th, Td } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const AllOrdersRow = ({ order, index }) => {
 
@@ -24,21 +26,22 @@ const AllOrdersRow = ({ order, index }) => {
     }
 
     return (
-        <tr>
-            <th>{index + 1}</th>
-            <td>{userName}</td>
-            <td>{email}</td>
-            <td>{productName}</td>
-            <td>${totalPrice}</td>
-            <td>
+        <Tr>
+            <Th className='hidden lg:block '>{index + 1}</Th>
+            <Td className=' text-center'>{userName}</Td>
+            <Td className=' text-center'>{email}</Td>
+            <Td className=' text-center'>{productName}</Td>
+            <Td className=' text-center'>${totalPrice}</Td>
+            <Td className=' text-center'>
                 <div>
                     {paid && <p className='btn btn-xs btn-success mr-2'>Pending</p>}
                     {shipped && <p className='btn btn-xs btn-success mr-2 font-bold'>Shipped</p>}
                     {!paid && !shipped && <p className='btn btn-xs btn-error mr-2'>Unpaid</p>}
                     {paid && <button onClick={() => handleShipped(_id)} className='btn btn-outline btn-primary btn-xs'>Ship</button>}
                 </div>
-            </td>
-        </tr>
+            </Td>
+        </Tr>
+
     );
 };
 

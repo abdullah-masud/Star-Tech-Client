@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import useParts from '../../hooks/useParts';
 import DeleteModal from './DeleteModal';
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const ManageProducts = () => {
     const [parts, setParts] = useParts();
@@ -27,35 +29,35 @@ const ManageProducts = () => {
     return (
         <div>
             <h2 className='text-2xl my-2'>Manage Products</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Option</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            parts.map((part, index) => <tr key={part._id}>
-                                <th>{index + 1}</th>
-                                <td>${part.name}</td>
-                                <td>${part.price}</td>
-                                <td>
+            <Table className='table  w-full'>
+                <Thead>
+                    <Tr>
+                        <Th className='hidden lg:block'>no.</Th>
+                        <Th className='text-center'>Name</Th>
+                        <Th className='text-center'>Price</Th>
+                        <Th className='text-center'>Option</Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
+                    {
+                        parts.map((part, index) =>
+                            <Tr key={part._id}>
+                                <Th className='hidden lg:block '>{index + 1}</Th>
+                                <Td className=' text-center'>{part.name}</Td>
+                                <Td className=' text-center'>${part.price}</Td>
+                                <Td className=' text-center'>
                                     <label for="delete-modal"
                                         onClick={() => setProductData(part._id)}
                                         class="btn btn-xs btn-error">Delete</label>
-                                </td>
-                            </tr>)
-                        }
-                    </tbody>
-                    {
-                        productData && <DeleteModal productData={productData} handleCancel={handleCancel} />
+                                </Td>
+                            </Tr>
+                        )
                     }
-                </table>
-            </div>
+                </Tbody>
+                {
+                    productData && <DeleteModal productData={productData} handleCancel={handleCancel} />
+                }
+            </Table>
         </div>
     );
 };

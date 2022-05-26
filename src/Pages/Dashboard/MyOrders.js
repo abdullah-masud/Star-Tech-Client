@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import CancelModal from './CancelModal';
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
@@ -57,55 +59,55 @@ const MyOrders = () => {
     return (
         <div>
             <h2 className='text-2xl my-2'>My Orders</h2>
-            <div class="overflow-x-auto ">
-                <table class="table lg:w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            orders.map((order, index) => <tr key={order._id}>
-                                <th>{index + 1}</th>
-                                <td>{order.userName}</td>
-                                <td>{order.productName}</td>
-                                <td>{order.totalOrder}</td>
-                                <td>${order.totalPrice}</td>
-                                <td>
-                                    {(order.totalPrice && !order.paid && !order.shipped) && <Link to={`/dashboard/payment/${order._id}`} className='btn btn-outline btn-xs btn-success mr-2'>Pay</Link>}
-
-
-                                    {(order.totalPrice && order.paid) &&
-                                        <div>
-                                            <p className='btn btn-xs btn-success mr-2 font-bold'>Pending</p>
-                                            <p className='text-xs'>Transaction ID: <br></br>{order.transactionId}</p>
-                                        </div>
-                                    }
-
-                                    {
-                                        order.shipped && !order.paid && <p className='btn btn-xs btn-success mr-2 font-bold'>Shipped</p>
-                                    }
-
-                                    {
-                                        !order.paid && !order.shipped &&
-                                        <label onClick={() => setOrderData(order._id)} for="cancel-modal" class="btn btn-xs btn-error">Cancel</label>
-                                    }
-
-                                </td>
-                            </tr>)
-                        }
-                    </tbody>
+            <Table className='table  w-full'>
+                <Thead>
+                    <Tr>
+                        <Th className='hidden lg:block'>no.</Th>
+                        <Th className='text-center'>Name</Th>
+                        <Th className='text-center'>Product</Th>
+                        <Th className='text-center'>Quantity</Th>
+                        <Th className='text-center'>Price</Th>
+                        <Th className='text-center'>Status</Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
                     {
-                        orderData && <CancelModal orderData={orderData} handleCancel={handleCancel} />
+                        orders.map((order, index) => <Tr>
+                            <Th className='hidden lg:block '>{index + 1}</Th>
+                            <Td className=' text-center'>{order.userName}</Td>
+                            <Td className=' text-center'>{order.productName}</Td>
+                            <Td className=' text-center'>{order.totalOrder}</Td>
+                            <Td className=' text-center'>${order.totalPrice}</Td>
+                            <Td className=' text-center'>
+                                {(order.totalPrice && !order.paid && !order.shipped) && <Link to={`/dashboard/payment/${order._id}`} className='btn btn-outline btn-xs btn-success mr-2'>Pay</Link>}
+
+
+                                {(order.totalPrice && order.paid) &&
+                                    <div>
+                                        <p className='btn btn-xs btn-success mr-2 font-bold'>Pending</p>
+                                        <p className='text-xs'>Transaction ID: <br></br>{order.transactionId}</p>
+                                    </div>
+                                }
+
+                                {
+                                    order.shipped && !order.paid && <p className='btn btn-xs btn-success mr-2 font-bold'>Shipped</p>
+                                }
+
+                                {
+                                    !order.paid && !order.shipped &&
+                                    <label onClick={() => setOrderData(order._id)} for="cancel-modal" class="btn btn-xs btn-error">Cancel</label>
+                                }
+                            </Td>
+                        </Tr>
+
+                        )
                     }
-                </table>
-            </div>
+                </Tbody>
+                {
+                    orderData && <CancelModal orderData={orderData} handleCancel={handleCancel} />
+                }
+            </Table>
+
         </div >
     );
 };

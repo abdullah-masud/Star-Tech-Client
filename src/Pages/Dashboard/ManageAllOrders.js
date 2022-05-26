@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AllOrdersRow from './AllOrdersRow';
+import { Table, Thead, Tbody, Tr, Th } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const ManageAllOrders = () => {
     const [allorders, setAllOrders] = useState([]);
@@ -13,29 +15,30 @@ const ManageAllOrders = () => {
     return (
         <div>
             <h2 className='text-2xl my-2'>Manage All Orders</h2>
-            <div class="overflow-x-auto ">
-                <table class="table lg:w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            allorders.map((order, index) => <AllOrdersRow
-                                key={order._id}
-                                index={index}
-                                order={order}
-                            />)
-                        }
-                    </tbody>
-                </table>
-            </div>
+            <Table className='table  w-full'>
+                <Thead>
+                    <Tr>
+                        <Th className='hidden lg:block'>no.</Th>
+                        <Th className='text-center'>Name</Th>
+                        <Th className='text-center'>Email</Th>
+                        <Th className='text-center'>Product</Th>
+                        <Th className='text-center'>Price</Th>
+                        <Th className='text-center'>Status</Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
+                    {
+                        allorders.map((order, index) => <AllOrdersRow
+                            key={order._id}
+                            index={index}
+                            order={order}
+                        />
+
+                        )
+                    }
+                </Tbody>
+
+            </Table>
         </div >
     );
 };
