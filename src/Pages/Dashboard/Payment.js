@@ -29,7 +29,7 @@ const Payment = () => {
                 <div class="card-body">
                     <p className='text-xl font-semibold text-primary'>Hello, {order.userName}</p>
                     <h2 class="card-title text-2xl font-bold">Pay for {order.productName}</h2>
-                    <p className='text-xl font-semibold'>Plese Pay: ${order.totalPrice}</p>
+                    <p className='text-xl font-semibold'>Please Pay: ${order.totalPrice}</p>
                 </div>
             </div>
             <div class="card w-full flex-shrink-0 max-w-sm shadow-2xl bg-base-100">

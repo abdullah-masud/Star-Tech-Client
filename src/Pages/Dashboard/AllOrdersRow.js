@@ -39,7 +39,7 @@ const AllOrdersRow = ({ order, index, setOrderCancel }) => {
             <Td className=' text-center'>${totalPrice}</Td>
             <Td className=' text-center'>
                 <div>
-                    {paid && <p className='btn btn-xs btn-info mr-2'>Pending</p>}
+                    {paid && <p className='btn btn-xs btn-info mr-2 font-bold'>Pending</p>}
                     {shipped && <p className='btn btn-xs btn-success mr-2 font-bold'>Shipped</p>}
                     {!paid && !shipped && <div>
                         <p className='btn btn-xs btn-error mr-2'>Unpaid</p>
