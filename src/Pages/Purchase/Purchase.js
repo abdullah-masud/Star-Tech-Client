@@ -133,7 +133,7 @@ const Purchase = () => {
                         <h2 class="card-title  lg:text-2xl mb-5">Total Price: ${!orderTotal ? price * minOrder : orderTotal * price}</h2>
                         <div>
                             <label className='label-text'>Enter Quantity</label>
-                            <input type="text"
+                            <input type="number"
                                 defaultValue={minOrder}
                                 onChange={handleChange}
                                 class="input input-bordered w-full max-w-xs mb-3  text-black font-bold" />
