@@ -1,5 +1,6 @@
 import React from 'react';
 import useReviews from '../../hooks/useReviews';
+import Loading from '../Shared/Loading';
 import Review from './Review';
 
 const AllReviews = () => {
@@ -9,7 +10,7 @@ const AllReviews = () => {
             <h2 className='lg:text-5xl font-bold text-2xl text-center text-primary lg:mb-3'>All Reviews</h2>
             <div data-aos="fade-right" data-aos-duration='800' data-aos-delay='200' className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-6'>
                 {
-                    reviews.map(review => <Review
+                    reviews.length === 0 ? <Loading /> : reviews.map(review => <Review
                         key={review._id}
                         review={review}
 
