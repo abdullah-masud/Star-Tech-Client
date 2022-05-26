@@ -99,7 +99,7 @@ const MyOrders = () => {
 
                                 {
                                     !order.paid && !order.shipped &&
-                                    <label onClick={() => setOrderData(order._id)} for="cancel-modal" class="btn btn-xs btn-error">Cancel</label>
+                                    <label onClick={() => setOrderData(order._id)} htmlFor="cancel-modal" className="btn btn-xs btn-error">Cancel</label>
                                 }
                             </Td>
                         </Tr>

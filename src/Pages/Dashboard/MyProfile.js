@@ -87,46 +87,46 @@ const MyProfile = () => {
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {/* Name input starts */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Name</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Name</span>
                             </label>
                             <input
                                 type="text"
                                 value={user?.displayName}
                                 disabled
                                 placeholder="Name"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("name")}
                             />
                         </div>
                         {/* Name input ends */}
 
                         {/* Email input starts */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Email</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Email</span>
                             </label>
                             <input
                                 type="text"
                                 value={user?.email}
                                 disabled
                                 placeholder="Name"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("name")}
                             />
                         </div>
                         {/* Email input ends */}
 
                         {/* Phone input starts */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Phone</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Phone</span>
                             </label>
                             <input
                                 type="number"
                                 placeholder="Phone"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("phone", {
                                     required: {
                                         value: true,
@@ -134,21 +134,21 @@ const MyProfile = () => {
                                     }
                                 })}
                             />
-                            <label class="label">
-                                {errors.phone?.type === 'required' && <span class="label-text-alt text-red-500">{errors.phone.message}</span>}
+                            <label className="label">
+                                {errors.phone?.type === 'required' && <span className="label-text-alt text-red-500">{errors.phone.message}</span>}
                             </label>
                         </div>
                         {/* Phone input ends */}
 
                         {/* Education input starts */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Education</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Education</span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="School Name"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("education", {
                                     required: {
                                         value: true,
@@ -156,21 +156,21 @@ const MyProfile = () => {
                                     }
                                 })}
                             />
-                            <label class="label">
-                                {errors.education?.type === 'required' && <span class="label-text-alt text-red-500">{errors.education.message}</span>}
+                            <label className="label">
+                                {errors.education?.type === 'required' && <span className="label-text-alt text-red-500">{errors.education.message}</span>}
                             </label>
                         </div>
                         {/* Education input ends */}
 
                         {/* Location input starts */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Location</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Location</span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="Address"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("address", {
                                     required: {
                                         value: true,
@@ -178,21 +178,21 @@ const MyProfile = () => {
                                     }
                                 })}
                             />
-                            <label class="label">
-                                {errors.address?.type === 'required' && <span class="label-text-alt text-red-500">{errors.address.message}</span>}
+                            <label className="label">
+                                {errors.address?.type === 'required' && <span className="label-text-alt text-red-500">{errors.address.message}</span>}
                             </label>
                         </div>
                         {/* Location input ends */}
 
                         {/* LinkedIn input starts */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">LinkedIn</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">LinkedIn</span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="LinkedIn"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("linkedIn", {
                                     required: {
                                         value: true,
@@ -200,8 +200,8 @@ const MyProfile = () => {
                                     }
                                 })}
                             />
-                            <label class="label">
-                                {errors.linkedIn?.type === 'required' && <span class="label-text-alt text-red-500">{errors.linkedIn.message}</span>}
+                            <label className="label">
+                                {errors.linkedIn?.type === 'required' && <span className="label-text-alt text-red-500">{errors.linkedIn.message}</span>}
                             </label>
                         </div>
                         {/* Location input ends */}
@@ -212,8 +212,6 @@ const MyProfile = () => {
                             <input type="submit" className='btn btn-primary text-white  max-w-xs btn-sm' value='Update Profile' />
                         </div>
                     </form>
-
-
 
                 </div>
             </div >

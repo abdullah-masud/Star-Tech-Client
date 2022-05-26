@@ -9,17 +9,17 @@ const Dashboard = () => {
     const [admin] = useAdmin(user)
     return (
         <div className='max-w-7xl mx-auto'>
-            <div class="drawer drawer-mobile">
-                <input id="dashboardSidebar" type="checkbox" class="drawer-toggle" />
-                <div class="drawer-content lg:mt-5">
+            <div className="drawer drawer-mobile">
+                <input id="dashboardSidebar" type="checkbox" className="drawer-toggle" />
+                <div className="drawer-content lg:mt-5">
                     <h2 className='text-2xl text-primary font-semibold'>Dashboard</h2>
                     <Outlet />
 
 
                 </div>
-                <div class="drawer-side">
-                    <label for="dashboardSidebar" class="drawer-overlay"></label>
-                    <ul class="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
+                <div className="drawer-side">
+                    <label htmlFor="dashboardSidebar" className="drawer-overlay"></label>
+                    <ul className="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
                         <li><Link to='/dashboard'>My Profile</Link></li>
                         {

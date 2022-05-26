@@ -122,31 +122,31 @@ const Purchase = () => {
                     </div>
                 </div>
 
-                <div class="card lg:max-w-lg bg-base-100 shadow-xl px-6">
-                    <div class="card-body">
-                        <h2 class="uppercase font-bold text-3xl mb-5">Checkout</h2>
+                <div className="card lg:max-w-lg bg-base-100 shadow-xl px-6">
+                    <div className="card-body">
+                        <h2 className="uppercase font-bold text-3xl mb-5">Checkout</h2>
                         <div className='flex items-center'>
-                            <h2 class="card-title mr-2 lg:text-2xl">Total Order: {!orderTotal ? minOrder : orderTotal}</h2>
+                            <h2 className="card-title mr-2 lg:text-2xl">Total Order: {!orderTotal ? minOrder : orderTotal}</h2>
 
                         </div>
 
-                        <h2 class="card-title  lg:text-2xl mb-5">Total Price: ${!orderTotal ? price * minOrder : orderTotal * price}</h2>
+                        <h2 className="card-title  lg:text-2xl mb-5">Total Price: ${!orderTotal ? price * minOrder : orderTotal * price}</h2>
                         <div>
                             <label className='label-text'>Enter Quantity</label>
                             <input type="number"
                                 defaultValue={minOrder}
                                 onChange={handleChange}
-                                class="input input-bordered w-full max-w-xs mb-3  text-black font-bold" />
+                                className="input input-bordered w-full max-w-xs mb-3  text-black font-bold" />
                             <p>{error}</p>
 
-                            <input type="text" value={user?.displayName} disabled class="input input-bordered w-full max-w-xs mb-3 text-black font-bold mt-4" />
-                            <input type="text" value={user?.email} disabled placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                            <input type="text" value={user?.displayName} disabled className="input input-bordered w-full max-w-xs mb-3 text-black font-bold mt-4" />
+                            <input type="text" value={user?.email} disabled placeholder="Type here" className="input input-bordered w-full max-w-xs" />
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 {/* Phone Input */}
                                 <input
                                     type="number"
                                     placeholder="Phone"
-                                    class="input input-bordered w-full max-w-xs mt-3"
+                                    className="input input-bordered w-full max-w-xs mt-3"
                                     {...register("phone", {
                                         required: {
                                             value: true,
@@ -158,19 +158,19 @@ const Purchase = () => {
                                         }
                                     })}
                                 />
-                                <label class="label">
-                                    {errors.phone?.type === 'required' && <span class="label-text-alt text-red-500">{errors.phone.message}</span>}
-                                    {errors.phone?.type === 'minLength' && <span class="label-text-alt text-red-500">{errors.phone.message}</span>}
+                                <label className="label">
+                                    {errors.phone?.type === 'required' && <span className="label-text-alt text-red-500">{errors.phone.message}</span>}
+                                    {errors.phone?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.phone.message}</span>}
                                 </label>
                                 {/* Phone Input Ends*/}
 
                                 {/* Address input starts */}
-                                <div class="form-control w-full max-w-xs">
+                                <div className="form-control w-full max-w-xs">
                                     <textarea
                                         type="text"
 
                                         placeholder="Address"
-                                        class="input input-bordered w-full max-w-xs h-20"
+                                        className="input input-bordered w-full max-w-xs h-20"
                                         {...register("address", {
                                             required: {
                                                 value: true,
@@ -178,8 +178,8 @@ const Purchase = () => {
                                             }
                                         })}
                                     />
-                                    <label class="label">
-                                        {errors.address?.type === 'required' && <span class="label-text-alt text-red-500">{errors.address.message}</span>}
+                                    <label className="label">
+                                        {errors.address?.type === 'required' && <span className="label-text-alt text-red-500">{errors.address.message}</span>}
                                     </label>
                                 </div>
                                 {/* Address input ends */}

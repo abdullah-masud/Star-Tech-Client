@@ -22,9 +22,9 @@ const AboutMe = () => {
                         <h2 className='text-3xl font-semibold'>Get in touch!</h2>
                         <h2 className='flex items-center text-lg'><MdEmail /><span className='ml-2'>masudctg00@gmail.com</span></h2>
 
-                        <a class="link link-hover flex items-center text-lg" target="_blank" rel='noreferrer' href="https://www.linkedin.com/in/abdullah-al-masud-6557041a1" ><BsLinkedin /><span className='ml-2'>LinkedIn</span></a>
+                        <a className="link link-hover flex items-center text-lg" target="_blank" rel='noreferrer' href="https://www.linkedin.com/in/abdullah-al-masud-6557041a1" ><BsLinkedin /><span className='ml-2'>LinkedIn</span></a>
 
-                        <a class="link link-hover flex items-center text-lg" target="_blank" rel='noreferrer' href="https://github.com/abdullah-masud" ><ImGithub /><span className='ml-2'>Github</span></a>
+                        <a className="link link-hover flex items-center text-lg" target="_blank" rel='noreferrer' href="https://github.com/abdullah-masud" ><ImGithub /><span className='ml-2'>Github</span></a>
                     </div>
                 </div>
             </div>

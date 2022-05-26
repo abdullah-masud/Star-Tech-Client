@@ -4,7 +4,7 @@ Website Link [Star Tech](https://inside-pc-85a30.web.app/)
 
 ## Website Description
 
-- Star Tech provides all of the most recent and improved computer components for your future computer. If you are a techie, we have just what you are searching for.
+- Star Tech provides all of the most recent and improved computer components for your future computer. If you are a techie, we have just what you are searching for. You can buy whatever you want from the website and pay using credit card. You can also login and update your profile. After the purchase the shipment status can be updated via admin.
 
 ## Website Features
 

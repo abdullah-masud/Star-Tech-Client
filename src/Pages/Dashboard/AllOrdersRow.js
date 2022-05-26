@@ -42,9 +42,9 @@ const AllOrdersRow = ({ order, index, setOrderCancel }) => {
                     {shipped && <p className='btn btn-xs btn-success mr-2 font-bold'>Shipped</p>}
                     {!paid && !shipped && <div>
                         <p className='btn btn-xs btn-error mr-2'>Unpaid</p>
-                        <label for="all-cancel-modal"
+                        <label htmlFor="all-cancel-modal"
                             onClick={() => setOrderCancel(_id)}
-                            class="btn btn-xs btn-error">Cancel</label>
+                            className="btn btn-xs btn-error">Cancel</label>
                     </div>}
                     {paid && <button onClick={() => handleShipped(_id)} className='btn btn-outline btn-primary btn-xs'>Ship</button>}
                 </div>

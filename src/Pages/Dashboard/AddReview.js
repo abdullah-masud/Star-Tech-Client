@@ -31,14 +31,14 @@ const AddReview = () => {
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {/* Name input starts */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Name</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Name</span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="Name"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("name", {
                                     required: {
                                         value: true,
@@ -46,21 +46,21 @@ const AddReview = () => {
                                     }
                                 })}
                             />
-                            <label class="label">
-                                {errors.name?.type === 'required' && <span class="label-text-alt text-red-500">{errors.name.message}</span>}
+                            <label className="label">
+                                {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
                             </label>
                         </div>
                         {/* Name input ends */}
 
                         {/* Review input starts */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Review</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Review</span>
                             </label>
                             <textarea
                                 type="text"
                                 placeholder="Review"
-                                class="input input-bordered w-full max-w-xs h-20"
+                                className="input input-bordered w-full max-w-xs h-20"
                                 {...register("description", {
                                     required: {
                                         value: true,
@@ -68,21 +68,21 @@ const AddReview = () => {
                                     }
                                 })}
                             />
-                            <label class="label">
-                                {errors.description?.type === 'required' && <span class="label-text-alt text-red-500">{errors.description.message}</span>}
+                            <label className="label">
+                                {errors.description?.type === 'required' && <span className="label-text-alt text-red-500">{errors.description.message}</span>}
                             </label>
                         </div>
                         {/* Review input ends */}
 
                         {/* Picture input starts */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Photo URL</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Photo URL</span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="Photo URL"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("image", {
                                     required: {
                                         value: true,
@@ -90,23 +90,23 @@ const AddReview = () => {
                                     }
                                 })}
                             />
-                            <label class="label">
-                                {errors.image?.type === 'required' && <span class="label-text-alt text-red-500">{errors.image.message}</span>}
+                            <label className="label">
+                                {errors.image?.type === 'required' && <span className="label-text-alt text-red-500">{errors.image.message}</span>}
                             </label>
                         </div>
                         {/* Picture input ends */}
 
                         {/* Rating input starts */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Rating</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Rating</span>
                             </label>
                             <input
                                 type="number"
                                 placeholder="Rating"
                                 min="0"
                                 max="5"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("rating", {
                                     required: {
                                         value: true,
@@ -114,8 +114,8 @@ const AddReview = () => {
                                     }
                                 })}
                             />
-                            <label class="label">
-                                {errors.rating?.type === 'required' && <span class="label-text-alt text-red-500">{errors.rating.message}</span>}
+                            <label className="label">
+                                {errors.rating?.type === 'required' && <span className="label-text-alt text-red-500">{errors.rating.message}</span>}
                             </label>
                         </div>
                         {/* Rating input ends */}

@@ -35,7 +35,7 @@ const UserRow = ({ user, index, refetch, users }) => {
             <Td className=' text-center'>{
                 role === 'admin' ? <p className='btn btn-success btn-xs'>admin</p>
                     :
-                    <button onClick={makeAdmin} class="btn btn-outline btn-xs btn-primary">Make Admin</button>
+                    <button onClick={makeAdmin} className="btn btn-outline btn-xs btn-primary">Make Admin</button>
             }</Td>
         </Tr>
     );

@@ -46,9 +46,9 @@ const ManageProducts = () => {
                                 <Td className=' text-center'>{part.name}</Td>
                                 <Td className=' text-center'>${part.price}</Td>
                                 <Td className=' text-center'>
-                                    <label for="delete-modal"
+                                    <label htmlFor="delete-modal"
                                         onClick={() => setProductData(part._id)}
-                                        class="btn btn-xs btn-error">Delete</label>
+                                        className="btn btn-xs btn-error">Delete</label>
                                 </Td>
                             </Tr>
                         )
