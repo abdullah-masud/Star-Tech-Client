@@ -11,6 +11,8 @@ const Purchase = () => {
     const [part, setPart] = useState({});
     const [user] = useAuthState(auth);
 
+    const [disabled, setDisabled] = useState(false);
+
     const quantityRef = useRef();
 
     const { register, formState: { errors }, handleSubmit, getValues, reset } = useForm();
@@ -25,7 +27,7 @@ const Purchase = () => {
     const [orderTotal, setOrderTotal] = useState('')
     const [error, setError] = useState('')
 
-    const errorElement = <p className='text-red-500'>Please Order within the Range</p>
+    const errorElement = <p className='text-red-500 text-semibold'>Please Order within the Range</p>
 
     const handleChangeAmount = () => {
         const quantiy = quantityRef.current.value;
@@ -77,22 +79,25 @@ const Purchase = () => {
                 toast.success('Added to cart')
             })
 
-        // const updatedAvailable = parseInt(available) - parseInt(totalOrder);
-        // const remaining = { available: updatedAvailable.toString() };
-        // const url = `http://localhost:5000/parts/${partId}`
-        // fetch(url, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(remaining),
-        // })
-        //     .then(res => res.json())
-        //     .then(info => {
-        //         console.log(info);
-        //     })
+
 
     };
+
+    const handleChange = event => {
+        const value = parseInt(event.target.value)
+        console.log(value, typeof value)
+        if ((value + 1) <= parseInt(minOrder) || (value - 1) >= parseInt(available) || isNaN(value)) {
+            setDisabled(true)
+            setError(errorElement)
+        }
+        else {
+            setDisabled(false)
+            setOrderTotal(value)
+            setError("")
+            quantityRef.current.value = ""
+        }
+
+    }
 
 
     return (
@@ -114,7 +119,6 @@ const Purchase = () => {
                                 <p className='text-xl font-semibold'>Price: ${price}</p>
                             </div>
                         </div>
-                        <p>{error}</p>
                     </div>
                 </div>
 
@@ -123,12 +127,19 @@ const Purchase = () => {
                         <h2 class="uppercase font-bold text-3xl mb-5">Checkout</h2>
                         <div className='flex items-center'>
                             <h2 class="card-title mr-2 lg:text-2xl">Total Order: {!orderTotal ? minOrder : orderTotal}</h2>
-                            <label htmlFor="amount-modal" class="btn modal-button btn-primary text-white btn-xs">Change</label>
+
                         </div>
 
                         <h2 class="card-title  lg:text-2xl mb-5">Total Price: ${!orderTotal ? price * minOrder : orderTotal * price}</h2>
                         <div>
-                            <input type="text" value={user?.displayName} disabled class="input input-bordered w-full max-w-xs mb-3 text-black font-bold" />
+                            <label className='label-text'>Enter Quantity</label>
+                            <input type="text"
+                                defaultValue={minOrder}
+                                onChange={handleChange}
+                                class="input input-bordered w-full max-w-xs mb-3  text-black font-bold" />
+                            <p>{error}</p>
+
+                            <input type="text" value={user?.displayName} disabled class="input input-bordered w-full max-w-xs mb-3 text-black font-bold mt-4" />
                             <input type="text" value={user?.email} disabled placeholder="Type here" class="input input-bordered w-full max-w-xs" />
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 {/* Phone Input */}
@@ -174,30 +185,13 @@ const Purchase = () => {
                                 {/* Address input ends */}
 
                                 <div className='flex lg:justify-end justify-center max-w-xs'>
-                                    <button type='submit' className="btn btn-primary text-white btn-sm mt-3" ><span className='mr-2'>
-                                        Add to Cart</span><MdOutlineShoppingCart /></button>
+                                    <button type='submit'
+                                        disabled={disabled}
+                                        className="btn btn-primary text-white btn-sm mt-3" ><span className='mr-2'>
+                                            Add to Cart</span><MdOutlineShoppingCart /></button>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                </div>
-            </div>
-            {/* MODAL */}
-            <input type="checkbox" id="amount-modal" class="modal-toggle" />
-            <div class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box flex flex-col justify-center">
-                    <label htmlFor="amount-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h2 class="uppercase text-xl font-bold mb-2 text-center">Enter order Quantity</h2>
-                    <input
-                        type="number"
-                        // value={minOrder}
-                        min={minOrder}
-                        max={available}
-                        ref={quantityRef}
-                        placeholder='Quantity' class="input input-bordered w-full mb-3 text-black font-bold"
-                    />
-                    <div className='flex justify-center modal-action'>
-                        <label onClick={handleChangeAmount} for='amount-modal' className='btn btn-primary text-white btn-sm mt-3'>Submit</label>
                     </div>
                 </div>
             </div>

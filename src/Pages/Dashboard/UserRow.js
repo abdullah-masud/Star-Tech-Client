@@ -27,21 +27,6 @@ const UserRow = ({ user, index, refetch, users }) => {
             })
     }
 
-    // const handleDelete = id => {
-    //     const url = `http://localhost:5000/users/${id}`
-    //     fetch(url, {
-    //         method: 'DELETE'
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             toast.success('User Deleted')
-    //             console.log(data)
-    //             refetch()
-    //         })
-
-    // }
-
-
 
     return (
         <Tr>

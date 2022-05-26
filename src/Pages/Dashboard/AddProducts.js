@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 const AddProducts = () => {
 
-    const { register, formState: { errors }, handleSubmit, getValues, reset } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const onSubmit = data => {
         console.log(data)
@@ -12,15 +12,20 @@ const AddProducts = () => {
         fetch(url, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(data)
         })
             .then(res => res.json())
             .then(result => {
-                toast.success("Parts Added")
-                reset();
-                console.log(result);
+                if (result.insertedId) {
+                    toast.success("Parts Added")
+                    reset();
+                }
+                else {
+                    toast.error('Failed to Add Parts')
+                }
             })
     };
 
