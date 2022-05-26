@@ -18,7 +18,7 @@ const Purchase = () => {
     const { register, formState: { errors }, handleSubmit, getValues, reset } = useForm();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/parts/${partId}`)
+        fetch(`https://powerful-anchorage-68667.herokuapp.com/parts/${partId}`)
             .then(res => res.json())
             .then(data => setPart(data))
     }, [part])
@@ -65,7 +65,7 @@ const Purchase = () => {
             address
         }
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://powerful-anchorage-68667.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

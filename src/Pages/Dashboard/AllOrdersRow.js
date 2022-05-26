@@ -9,7 +9,7 @@ const AllOrdersRow = ({ order, index, setOrderCancel }) => {
 
     const handleShipped = (id) => {
         const paid = false
-        fetch(`http://localhost:5000/shipped/${id}`, {
+        fetch(`https://powerful-anchorage-68667.herokuapp.com/shipped/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

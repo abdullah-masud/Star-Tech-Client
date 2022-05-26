@@ -12,7 +12,7 @@ const ManageProducts = () => {
 
 
     const handleCancel = id => {
-        const url = `http://localhost:5000/parts/${id}`
+        const url = `https://powerful-anchorage-68667.herokuapp.com/parts/${id}`
         fetch(url, {
             method: 'DELETE'
         })

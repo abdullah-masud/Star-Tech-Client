@@ -10,7 +10,7 @@ const ManageAllOrders = () => {
     const [orderCancel, setOrderCancel] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/allorders', {
+        fetch('https://powerful-anchorage-68667.herokuapp.com/allorders', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -21,7 +21,7 @@ const ManageAllOrders = () => {
     }, [allorders])
 
     const handleCancel = (id) => {
-        const url = `http://localhost:5000/orders/${id}`
+        const url = `https://powerful-anchorage-68667.herokuapp.com/orders/${id}`
         fetch(url, {
             method: 'DELETE'
 

@@ -8,7 +8,7 @@ const AddProducts = () => {
 
     const onSubmit = data => {
         console.log(data)
-        const url = `http://localhost:5000/parts`
+        const url = `https://powerful-anchorage-68667.herokuapp.com/parts`
         fetch(url, {
             method: 'POST',
             headers: {

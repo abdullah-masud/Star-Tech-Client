@@ -20,7 +20,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+            fetch(`https://powerful-anchorage-68667.herokuapp.com/orders?email=${user?.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -43,7 +43,7 @@ const MyOrders = () => {
     }, [user, navigate, orders])
 
     const handleCancel = (id) => {
-        const url = `http://localhost:5000/orders/${id}`
+        const url = `https://powerful-anchorage-68667.herokuapp.com/orders/${id}`
         fetch(url, {
             method: 'DELETE'
         })

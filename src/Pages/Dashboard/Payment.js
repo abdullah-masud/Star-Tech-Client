@@ -10,7 +10,7 @@ const stripePromise = loadStripe('pk_test_51L1ls3F9WqdCZWFZCpbNzVBCogQojitIfqSXX
 
 const Payment = () => {
     const { partId } = useParams()
-    const url = `http://localhost:5000/orders/${partId}`;
+    const url = `https://powerful-anchorage-68667.herokuapp.com/orders/${partId}`;
 
     const { data: order, isLoading } = useQuery(['order', partId], () => fetch(url, {
         method: 'GET',

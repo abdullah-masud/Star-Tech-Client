@@ -10,7 +10,7 @@ const MyProfile = () => {
 
     const [user] = useAuthState(auth);
 
-    const { data: profile, refetch } = useQuery('profile', () => fetch(`http://localhost:5000/users/${user.email}`).then(res => res.json()))
+    const { data: profile, refetch } = useQuery('profile', () => fetch(`https://powerful-anchorage-68667.herokuapp.com/users/${user.email}`).then(res => res.json()))
 
 
     const onSubmit = data => {
@@ -30,7 +30,7 @@ const MyProfile = () => {
             phone
         }
 
-        fetch(`http://localhost:5000/users/${email}`, {
+        fetch(`https://powerful-anchorage-68667.herokuapp.com/users/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

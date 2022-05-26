@@ -6,7 +6,7 @@ import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const AllUsers = () => {
 
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/users', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://powerful-anchorage-68667.herokuapp.com/users', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

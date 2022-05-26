@@ -7,7 +7,7 @@ const AddReview = () => {
     const { register, formState: { errors }, handleSubmit, getValues, reset } = useForm();
 
     const onSubmit = data => {
-        const url = `http://localhost:5000/reviews/`
+        const url = `https://powerful-anchorage-68667.herokuapp.com/reviews/`
         fetch(url, {
             method: 'POST',
             headers: {
