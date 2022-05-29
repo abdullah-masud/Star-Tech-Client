@@ -22,6 +22,11 @@ Website Link [Star Tech](https://inside-pc-85a30.web.app/)
 
 - You can also see your profile and update your profile.
 
+## Admin Credintials
+
+-Admin Email: admin@gmail.comp
+-Admin Pass: 123456
+
 ## Technologies used
 
 - React
