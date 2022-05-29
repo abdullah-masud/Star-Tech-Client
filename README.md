@@ -24,8 +24,9 @@ Website Link [Star Tech](https://inside-pc-85a30.web.app/)
 
 ## Admin Credintials
 
--Admin Email: admin@gmail.comp
--Admin Pass: 123456
+- Admin Email: admin@gmail.com
+
+- Admin Pass: 123456
 
 ## Technologies used
 
